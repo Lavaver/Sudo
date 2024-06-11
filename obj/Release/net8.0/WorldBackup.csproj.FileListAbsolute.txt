@@ -1,0 +1,14 @@
+D:\repos\WorldBackup\bin\Release\net8.0\WorldBackup.exe
+D:\repos\WorldBackup\bin\Release\net8.0\WorldBackup.deps.json
+D:\repos\WorldBackup\bin\Release\net8.0\WorldBackup.runtimeconfig.json
+D:\repos\WorldBackup\bin\Release\net8.0\WorldBackup.dll
+D:\repos\WorldBackup\bin\Release\net8.0\WorldBackup.pdb
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.AssemblyInfoInputs.cache
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.AssemblyInfo.cs
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.csproj.CoreCompileInputs.cache
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.dll
+D:\repos\WorldBackup\obj\Release\net8.0\refint\WorldBackup.dll
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.pdb
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.genruntimeconfig.cache
+D:\repos\WorldBackup\obj\Release\net8.0\ref\WorldBackup.dll
