@@ -92,7 +92,7 @@ namespace WorldBackup
                         {
                             try
                             {
-                                Directory.Delete($"{backups[selectedIndex].Path}");
+                                DeleteDirectoryRecursively($"{backups[selectedIndex].Path}");
                                 LogConsole.Log("备份数据库", $"{backups[selectedIndex].Path} => Delected（删除）", ConsoleColor.Red);
                                 backups[selectedIndex].Element.Remove();
                                 doc.Save(xmlFilePath);
@@ -115,6 +115,33 @@ namespace WorldBackup
             catch (Exception ex)
             {
                 LogConsole.Log("备份数据库", $"读取数据库中存在的备份记录时出现问题：{ex.Message}", ConsoleColor.Red);
+            }
+        }
+
+        public static void DeleteDirectoryRecursively(string targetDir)
+        {
+            try
+            {
+                // 获取所有文件并删除
+                foreach (string file in Directory.GetFiles(targetDir))
+                {
+                    File.SetAttributes(file, FileAttributes.Normal);
+                    File.Delete(file);
+                }
+
+                // 获取所有子目录并递归删除
+                foreach (string dir in Directory.GetDirectories(targetDir))
+                {
+                    DeleteDirectoryRecursively(dir);
+                }
+
+                // 最后删除目标目录自身
+                Directory.Delete(targetDir, false);
+            }
+            catch (Exception ex)
+            {
+                LogConsole.Log("备份数据库", $"{targetDir} =/> Exception（异常：{ex.Message}）", ConsoleColor.Red);
+                throw; // 重新抛出异常以便上层代码处理
             }
         }
     }
