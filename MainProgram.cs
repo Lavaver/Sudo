@@ -16,6 +16,22 @@ namespace WorldBackup
                 {
                     ReadDatabase.Run();
                 }
+                else if (args[0] == "-clean")
+                {
+                    DelDatabase.DelFile();
+                }
+                else if (args[0] == "-deldatabase")
+                {
+                    DelDatabase.DelData();
+                }
+                else if (args[0] == "-recovery")
+                {
+                    RecoveryFile.RestoreData();
+                }
+                else if (args[0] == "-config")
+                {
+                    AfterConfig.Run();
+                }
                 else
                 {
                     LogConsole.Log("Init", "未识别的命令行参数", ConsoleColor.Red);

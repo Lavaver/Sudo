@@ -12,3 +12,4 @@ D:\repos\WorldBackup\obj\Release\net8.0\refint\WorldBackup.dll
 D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.pdb
 D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.genruntimeconfig.cache
 D:\repos\WorldBackup\obj\Release\net8.0\ref\WorldBackup.dll
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.sourcelink.json

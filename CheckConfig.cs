@@ -110,7 +110,7 @@ namespace WorldBackup
 
                 doc.Save(filePath);
 
-                LogConsole.Log($"WorldBackup CheckConfig Progress ({PID})", $"配置已生成。请按照配置文件提示填写配置。程序将退出以便配置生效", ConsoleColor.Blue);
+                LogConsole.Log($"WorldBackup CheckConfig Progress ({PID})", $"配置已生成。请使用 -config 修改你的配置。程序将退出以便配置生效", ConsoleColor.Blue);
                 Environment.Exit(0);
             }
             catch (Exception ex)

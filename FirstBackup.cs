@@ -76,7 +76,6 @@ namespace WorldBackup
                 LogConsole.Log($"WorldBackup Backup", $"无效的路径配置，检查配置文件的 source 值", ConsoleColor.Red);
                 Environment.Exit(1);
             }
-
             SaveBackupRecord(backupPath, backupIdentifier);
         }
 
@@ -84,19 +83,58 @@ namespace WorldBackup
         {
             Directory.CreateDirectory(destinationDir);
 
+            // 复制文件并进行差异备份
             foreach (var file in Directory.GetFiles(sourceDir))
             {
                 var destFile = Path.Combine(destinationDir, Path.GetFileName(file));
-                File.Copy(file, destFile);
+                if (!File.Exists(destFile) || File.GetLastWriteTime(file) > File.GetLastWriteTime(destFile))
+                {
+                    File.Copy(file, destFile, true);
+                }
             }
 
+            // 递归处理子目录
             foreach (var dir in Directory.GetDirectories(sourceDir))
             {
                 var destDir = Path.Combine(destinationDir, Path.GetFileName(dir));
                 CopyDirectory(dir, destDir);
             }
+
+            // 删除目标目录中不再存在于源目录中的文件和目录
+            CleanupObsoleteFilesAndDirectories(sourceDir, destinationDir);
         }
 
+        private static void CleanupObsoleteFilesAndDirectories(string sourceDir, string destinationDir)
+        {
+            foreach (var destFile in Directory.GetFiles(destinationDir))
+            {
+                var sourceFile = Path.Combine(sourceDir, Path.GetFileName(destFile));
+                if (!File.Exists(sourceFile))
+                {
+                    File.Delete(destFile);
+                }
+            }
+
+            foreach (var destDir in Directory.GetDirectories(destinationDir))
+            {
+                var sourceDirChild = Path.Combine(sourceDir, Path.GetFileName(destDir));
+                if (!Directory.Exists(sourceDirChild))
+                {
+                    Directory.Delete(destDir, true);
+                }
+                else
+                {
+                    CleanupObsoleteFilesAndDirectories(sourceDirChild, destDir);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// 保存备份记录到备份数据库
+        /// </summary>
+        /// <param name="backupPath">备份到</param>
+        /// <param name="backupIdentifier">标识符</param>
         private static void SaveBackupRecord(string backupPath, string backupIdentifier)
         {
             var backupTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
