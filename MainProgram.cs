@@ -6,6 +6,8 @@ namespace WorldBackup
     {
         static void Main(string[] args)
         {
+            LogConsole.Initialize();
+
             LogConsole.Log("Init", "正在初始化，请稍候", ConsoleColor.Green);
 
             // 检查是否有命令行参数
@@ -20,7 +22,7 @@ namespace WorldBackup
                 {
                     DelDatabase.DelFile();
                 }
-                else if (args[0] == "-deldatabase")
+                else if (args[0] == "-deldata")
                 {
                     DelDatabase.DelData();
                 }

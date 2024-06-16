@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace WorldBackup
@@ -7,55 +8,37 @@ namespace WorldBackup
     {
         private static readonly object _lock = new object();
         private static readonly string logFileName = $"log_{Guid.NewGuid().ToString()}.log";
-        private static StreamWriter logFile;
+        private static readonly string logPath = "Log";
+        private static TextWriterTraceListener _traceListener;
 
-        static void Logger()
-        {
-            try
-            {
-                logFile = File.AppendText(logFileName);
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} / LogConsole ERROR] Failed to initialize log file: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// 紧急关闭日志文件
-        /// </summary>
-        private static void ERRCloseLogFile()
-        {
-            if (logFile != null)
-            {
-                try
-                {
-                    logFile.Close();
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} / LogConsole ERROR] Failed to close log file: {ex.Message}");
-                }
-                finally
-                {
-                    logFile = null;
-                }
-            }
-        }
 
         private static string GetCurrentTime(bool withMilliseconds = false)
         {
             return withMilliseconds ? $"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}" : $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}";
         }
+        
+        /// <summary>
+        /// 初始化日志模块
+        /// </summary>
+        public static void Initialize()
+        {
+            if (!Directory.Exists(logPath))
+            {
+                Directory.CreateDirectory(logPath);
+            }
+            _traceListener = new TextWriterTraceListener(Path.Combine(logPath, logFileName));
+            Trace.Listeners.Add(_traceListener);
+        }
+
 
         /// <summary>
-        /// 统一的可缩放日志模块
+        /// 统一的可缩放日志模块（最近更改：史 诗 级 重 构 日 志 模 块）
         /// </summary>
         /// <param name="logLevel">日志等级</param>
         /// <param name="log">日志内容</param>
         /// <param name="color">前景色</param>
-        /// <param name="isError">是否为错误日志</param>
-        /// <param name="logToFile">是否写入到日志文件</param>
+        /// <param name="isError">（可选）是否为错误日志。默认为否（false）</param>
+        /// <param name="logToFile">（可选）是否写入到日志文件。默认为是（true）</param>
         public static void Log(string logLevel, string log, ConsoleColor color, bool isError = false, bool logToFile = true)
         {
             lock (_lock)
@@ -81,37 +64,35 @@ namespace WorldBackup
                         Console.WriteLine($"] {log}");
                     }
 
-                    if (logToFile && logFile != null)
+                    if (logToFile && _traceListener != null)
                     {
-                        try
-                        {
-                            logFile.WriteLine($"[{currentTime} / {logLevel}] {log}");
-                            logFile.Flush();
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.Error.Write($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} / ");
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Error.Write($"LogConsole ERROR");
-                            Console.ForegroundColor = originalColor;
-                            Console.Error.WriteLine($"] Failed to write log to file: {ex.Message}");
-                            ERRCloseLogFile();
-                        }
+                        Trace.WriteLine($"[{currentTime} / {logLevel}] {log}");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Console.Error.Write($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} / ");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Error.Write($"LogConsole ERROR");
-                    Console.ForegroundColor = originalColor;
-                    Console.Error.WriteLine($"] General logging error: {ex.Message}");
+                    HandleException(ex, "General logging error");
                 }
                 finally
                 {
-
+                    Trace.Flush();
                 }
             }
+        }
+
+        private static void HandleException(Exception ex, string message)
+        {
+            string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            ConsoleColor originalColor = Console.ForegroundColor;
+
+            Console.Error.Write($"[{currentTime} / ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Error.Write($"LogConsole ERROR");
+            Console.ForegroundColor = originalColor;
+            Console.Error.WriteLine($"] {message}: {ex.Message}");
+
+            Trace.WriteLine($"[{currentTime} / LogConsole ERROR] {message}: {ex.Message}");
+            Trace.WriteLine(ex.StackTrace);
         }
 
         /// <summary>
@@ -148,14 +129,6 @@ namespace WorldBackup
         public static void Init(string log)
         {
             Log("Init", log, ConsoleColor.Blue);
-        }
-
-        /// <summary>
-        /// 关闭日志文件
-        /// </summary>
-        public static void CloseLogFile()
-        {
-            logFile.Close();
         }
     }
 }
