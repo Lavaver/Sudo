@@ -60,6 +60,7 @@
 | SourceFilePath | 必须 | 必须（用于指代保存路径） | 无需 | 无需 |
 | DestinationPath | 可选 | 必须 | 必须 | 必须 |
 
-## 最近更新速报 | Release Version 3.0
+## 最近更新速报 | Release Version 3.1 HotFix
 
-1. （重磅更新）实装 WebDAV Online 模块。现在可以将你喜爱的文件上传至你喜爱的存储服务！
+1. 修复了 `WebDAV.Download(string, string, string, string, string)` 方法最后俩参数填反的低级错误 :(
+2. 将 `WebDAV.Upload(string, string, string, string, [string = "/"])` 的超时时间修改为无限，以确保大文件上传时不会超时

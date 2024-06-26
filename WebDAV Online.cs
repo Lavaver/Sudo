@@ -18,10 +18,11 @@ namespace WorldBackup
             {
                 LogConsole.Log("WebDAV Upload", $"正在构建请求（访问码：{Password}）", ConsoleColor.Blue);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(Address + destinationPath);
-                req.Credentials = new NetworkCredential(Account, Password);//用户名,密码   //CredentialCache.DefaultCredentials使用默认的认证
+                req.Credentials = new NetworkCredential(Account, Password);//用户名,密码
                 req.PreAuthenticate = true;
                 req.Method = "PUT";
                 req.AllowWriteStreamBuffering = true;
+                req.Timeout = System.Threading.Timeout.Infinite; // 使用无限超时时间确保大文件能够顺利上传
 
                 LogConsole.Log("WebDAV Upload", $"正在准备要上传的文件（{SourceFilePath} => {destinationPath}）", ConsoleColor.Blue);
 
@@ -69,35 +70,44 @@ namespace WorldBackup
             try
             {
                 LogConsole.Log("WebDAV Download", $"正在下载文件（{DestinationPath}）。请稍候", ConsoleColor.Blue);
-                System.Uri myURi = new System.Uri(Address + DestinationPath);
-                string sfilePath = SavePath;
 
-                WebRequest req = WebRequest.Create(myURi);
-                req.Credentials = new NetworkCredential(Account, Password);
-                req.Method = "GET";
-                req.Timeout = System.Threading.Timeout.Infinite;
-                req.Credentials = CredentialCache.DefaultCredentials;
-                WebResponse res = req.GetResponse();
-                Stream inStream = res.GetResponseStream();
+                // 创建Web请求
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Address + DestinationPath);
+                request.Method = "GET";
+                request.Credentials = new NetworkCredential(Account, Password);
+                request.Timeout = System.Threading.Timeout.Infinite;
 
-                FileStream fs = new FileStream(sfilePath, FileMode.OpenOrCreate);
-
-                byte[] inData = new byte[4096];
-                int bytesRead = inStream.Read(inData, 0, inData.Length);
-                while (bytesRead > 0)
+                // 发送请求并获取响应
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                    fs.Write(inData, 0, bytesRead);
-                    bytesRead = inStream.Read(inData, 0, inData.Length);
+                    // 打开远程文件流
+                    using (Stream responseStream = response.GetResponseStream())
+                    {
+                        // 创建本地文件流
+                        using (FileStream fileStream = new FileStream(SavePath, FileMode.Create))
+                        {
+                            // 将远程流复制到本地文件流
+                            responseStream.CopyTo(fileStream);
+                        }
+                    }
                 }
 
-                fs.Close();
-
-                inStream.Close();
                 LogConsole.Log("WebDAV Download", $"完成下载（{DestinationPath} => {SavePath}）", ConsoleColor.Green);
+            }
+            catch (WebException ex)
+            {
+                // 处理Web请求异常
+                LogConsole.Log("WebDAV Download", $"下载文件时发生Web请求错误：{ex.Message}", ConsoleColor.Red);
+            }
+            catch (IOException ex)
+            {
+                // 处理文件操作异常
+                LogConsole.Log("WebDAV Download", $"下载文件时发生IO错误：{ex.Message}", ConsoleColor.Red);
             }
             catch (Exception ex)
             {
-                LogConsole.Log("WebDAV Upload", $"下载文件时发生错误：{ex.Message}", ConsoleColor.Red);
+                // 处理其他异常
+                LogConsole.Log("WebDAV Download", $"下载文件时发生错误：{ex.Message}", ConsoleColor.Red);
             }
         }
 

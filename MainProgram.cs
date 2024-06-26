@@ -50,7 +50,7 @@ namespace WorldBackup
                     }
                     else if ( args[6] == "Download")
                     {
-                        WebDAV.Download(address, account, password, sourceFilePath, destinationPath);
+                        WebDAV.Download(address, account, password, destinationPath, sourceFilePath);
                     }
                     else if ( args[6] == "Delete")
                     {
