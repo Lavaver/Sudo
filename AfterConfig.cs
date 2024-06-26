@@ -16,6 +16,7 @@ namespace WorldBackup
                 LogConsole.Log("配置","请选择一个选项",ConsoleColor.Blue);
                 Console.WriteLine("1. 来源文件夹");
                 Console.WriteLine("2. 备份到");
+                Console.WriteLine("3. NTP 服务器");
                 Console.WriteLine("0. 退出");
 
                 string choice = Console.ReadLine();
@@ -27,6 +28,9 @@ namespace WorldBackup
                         break;
                     case "2":
                         HandleChoice("backupto");
+                        break;
+                    case "3":
+                        HandleChoice("NTP-Server");
                         break;
                     case "0":
                         return;

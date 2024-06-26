@@ -30,6 +30,42 @@ namespace WorldBackup
                 {
                     RecoveryFile.RestoreData();
                 }
+                else if (args[0] == "-WebDAV")
+                {
+                    if (args.Length < 6)
+                    {
+                        LogConsole.Log("Init", "用法: YourApp.exe -WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] <Upload/Download/Delete/NewFolder>", ConsoleColor.Yellow);
+                        return; 
+                    }
+                    string address = args[1];
+                    string account = args[2];
+                    string password = args[3];
+                    string sourceFilePath = args[4];
+                    string destinationPath = args.Length > 5 ? args[5] : "/"; // 默认为根路径
+
+                    if (args[6] == "Upload")
+                    {
+                        // 调用上传方法
+                        WebDAV.Upload(address, account, password, sourceFilePath, destinationPath);
+                    }
+                    else if ( args[6] == "Download")
+                    {
+                        WebDAV.Download(address, account, password, sourceFilePath, destinationPath);
+                    }
+                    else if ( args[6] == "Delete")
+                    {
+                        WebDAV.Delete(address, account, password, destinationPath);
+                    }
+                    else if (args[6] == "NewFolder")
+                    {
+                        WebDAV.NewFolder(address, account, password, destinationPath);
+                    }
+                    else
+                    {
+                        LogConsole.Log("Init", "不正确的操作模式", ConsoleColor.Red);
+                        return;
+                    }
+                }
                 else if (args[0] == "-config")
                 {
                     AfterConfig.Run();

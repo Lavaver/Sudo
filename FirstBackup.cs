@@ -137,7 +137,7 @@ namespace WorldBackup
         /// <param name="backupIdentifier">标识符</param>
         private static void SaveBackupRecord(string backupPath, string backupIdentifier)
         {
-            var backupTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            var backupTime = NTPC.Run();
 
             var doc = XDocument.Load(BackupDatabaseFile);
             var root = doc.Element("Backups");

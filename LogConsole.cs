@@ -130,5 +130,23 @@ namespace WorldBackup
         {
             Log("Init", log, ConsoleColor.Blue);
         }
+
+        /// <summary>
+        /// 将 Debug 输出至标准输出流
+        /// </summary>
+        /// <param name="log">日志</param>
+        public static void Debug(string log)
+        {
+            Log("Debug", log, ConsoleColor.Green);
+        }
+
+        /// <summary>
+        /// 将 R5 输出至标准输出流
+        /// </summary>
+        /// <param name="log">日志</param>
+        public static void R5(string log)
+        {
+            Log("Console R5", log, ConsoleColor.Blue);
+        }
     }
 }

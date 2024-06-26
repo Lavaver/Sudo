@@ -10,6 +10,8 @@
 - Backup Database（备份数据库） - 记录备份详情
 - Backup 与 FirstBackup 模块 - 提供完整的冷备份解决方案
 - Database Recovery（数据库恢复） - 从数据库记录中恢复指定的备份
+- NTP-C（Network Time Protocol Calibrators，网络时间协议校准器） - 实时比对 NTP 与系统时间，并在备份中直接使用 NTP 时间
+- WebDAV Online - 使用 WebDAV 模块可以快速从本地上传文件到在线存储服务
 
 ## 如何使用
 
@@ -34,6 +36,10 @@
 
 `-config` - 进入配置页面并进行软件配置
 
+`-WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] <Upload/Download/Delete/NewFolder>` - 使用 WebDAV Online 模块将文件上传到服务器。亦可进行下载、删除文件和创建文件夹操作。
+
+> WebDAV 模块根据不同的操作模式会改变这些参数的可用性。详见附录《WebDAV Online 模块操作参数关系表》。
+
 ## 灵感
 
 该项目灵感来自于著名的版本控制软件 Git ，实现了一些基本且重要的功能：
@@ -44,7 +50,16 @@
 - 日志：这个就不用我多说了懂得都懂，它很重要
 - 备份数据库：Git 的精华，使用数据库可快速存储、查阅、删除及恢复备份，保证一致性的同时也可追溯备份日期
 
-## 最近更新速报 | Release Version 2.1
+## 附录：WebDAV Online 模块操作参数关系表
 
-1. 史 诗 级 重 构 日 志 模 块
-2. 将 `-deldatabase` 参数更改为 `-deldata`  ，确保参数表明含义不与 `-clean` 冲突
+| 参数 | 在 Upload 的可用性 | 在 Download 的可用性 | 在 Delete 的可用性 | 在 NewFolder 的可用性 |
+| --- | --- | --- | --- | --- |
+| Address | 必须 | 必须 | 必须 | 必须 |
+| Account | 必须 | 必须 | 必须 | 必须 |
+| Password | 必须 | 必须 | 必须 | 必须 |
+| SourceFilePath | 必须 | 必须（用于指代保存路径） | 无需 | 无需 |
+| DestinationPath | 可选 | 必须 | 必须 | 必须 |
+
+## 最近更新速报 | Release Version 3.0
+
+1. （重磅更新）实装 WebDAV Online 模块。现在可以将你喜爱的文件上传至你喜爱的存储服务！

@@ -8,6 +8,7 @@ namespace WorldBackup
     {
         private const string DefaultSourceFolder = "默认备份来源文件夹";
         private const string DefaultBackupToFolder = "默认备份到文件夹";
+        private const string DefaultNTPServerAddress = "time.windows.com";
 
         public static void Run()
         {
@@ -107,6 +108,10 @@ namespace WorldBackup
                 XmlElement backupToNode = doc.CreateElement("backupto");
                 backupToNode.InnerText = DefaultBackupToFolder;
                 configNode.AppendChild(backupToNode);
+
+                XmlElement NTPServerNode = doc.CreateElement("NTP-Server");
+                NTPServerNode.InnerText = DefaultNTPServerAddress;
+                configNode.AppendChild(NTPServerNode);
 
                 doc.Save(filePath);
 
