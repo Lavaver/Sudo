@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorldBackup")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("3.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("3.1.0+0c2050c0a8d97a239f1359b52fc71ea36b03cfb7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("3.1.0+a5b9cee913e3afcd33797d47e8b848cf1478a582")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorldBackup")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorldBackup")]
 [assembly: System.Reflection.AssemblyVersionAttribute("3.1.0.0")]
