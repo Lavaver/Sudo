@@ -11,7 +11,9 @@
 - Backup 与 FirstBackup 模块 - 提供完整的冷备份解决方案
 - Database Recovery（数据库恢复） - 从数据库记录中恢复指定的备份
 - NTP-C（Network Time Protocol Calibrators，网络时间协议校准器） - 实时比对 NTP 与系统时间，并在备份中直接使用 NTP 时间
-- WebDAV Online - 使用 WebDAV 模块可以快速从本地上传文件到在线存储服务
+- Sumeru Online - 使用 WebDAV 模块可以快速从本地上传文件到在线存储服务
+
+> 首先绝对不能启动一个 Minecraft 服务器...
 
 ## 如何使用
 
@@ -36,9 +38,9 @@
 
 `-config` - 进入配置页面并进行软件配置
 
-`-WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] <Upload/Download/Delete/NewFolder>` - 使用 WebDAV Online 模块将文件上传到服务器。亦可进行下载、删除文件和创建文件夹操作。
+`-WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] <Upload/Download/Delete/NewFolder/List>` - 使用 Semeru Module 将文件上传到服务器。亦可进行下载、删除文件和创建文件夹操作。
 
-> WebDAV 模块根据不同的操作模式会改变这些参数的可用性。详见附录《WebDAV Online 模块操作参数关系表》。
+> Semeru Module 根据不同的操作模式会改变这些参数的可用性。详见附录《Semeru Module 操作参数关系表》。
 
 ## 灵感
 
@@ -50,17 +52,20 @@
 - 日志：这个就不用我多说了懂得都懂，它很重要
 - 备份数据库：Git 的精华，使用数据库可快速存储、查阅、删除及恢复备份，保证一致性的同时也可追溯备份日期
 
-## 附录：WebDAV Online 模块操作参数关系表
+## 附录：Sumeru Module 操作参数关系表
 
-| 参数 | 在 Upload 的可用性 | 在 Download 的可用性 | 在 Delete 的可用性 | 在 NewFolder 的可用性 |
-| --- | --- | --- | --- | --- |
-| Address | 必须 | 必须 | 必须 | 必须 |
-| Account | 必须 | 必须 | 必须 | 必须 |
-| Password | 必须 | 必须 | 必须 | 必须 |
-| SourceFilePath | 必须 | 必须（用于指代保存路径） | 无需 | 无需 |
-| DestinationPath | 可选 | 必须 | 必须 | 必须 |
+| 参数 | 在 Upload 的可用性 | 在 Download 的可用性 | 在 Delete 的可用性 | 在 NewFolder 的可用性 | 在 List 的可用性 |
+| --- | --- | --- | --- | --- | --- |
+| Address | 必须 | 必须 | 必须 | 必须 | 必须 |
+| Account | 必须 | 必须 | 必须 | 必须 | 必须 |
+| Password | 必须 | 必须 | 必须 | 必须 | 必须 |
+| SourceFilePath | 必须 | 必须（用于指代保存路径） | 无需 | 无需 | 无需 |
+| DestinationPath | 可选 | 必须 | 必须 | 必须 | 无需 |
 
-## 最近更新速报 | Release Version 3.1 HotFix
+> 无需或可选的参数可以使用 `~` 指代忽略这个参数
 
-1. 修复了 `WebDAV.Download(string, string, string, string, string)` 方法最后俩参数填反的低级错误 :(
-2. 将 `WebDAV.Upload(string, string, string, string, [string = "/"])` 的超时时间修改为无限，以确保大文件上传时不会超时
+## 最近更新速报 | Release Version 4.0
+
+1. 从该版本开始，该程序代码除了 WebDAV 模块之外的任意部分均统称为**枫丹核心**（Fontaine Core）
+2. WebDAV 核心更名为**须弥模块**（Sumeru Module）
+3. Sumeru Module 新增查询 WebDAV 服务器全部文件的方法

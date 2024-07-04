@@ -80,6 +80,32 @@ namespace WorldBackup
             }
         }
 
+        /// <summary>
+        /// 正在执行进程时可用的日志记录方式
+        /// </summary>
+        /// <param name="logLevel">日志等级</param>
+        /// <param name="log">日志</param>
+        public static void TaskLog(string logLevel, string log)
+        {
+            lock (_lock)
+            {
+                try
+                {
+                        Console.Write($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss} / ");
+                        Console.Write($"{logLevel}");
+                        Console.Write($"] {log}");
+                }
+                catch (Exception ex)
+                {
+                    HandleException(ex, "General logging error");
+                }
+                finally
+                {
+                    Trace.Flush();
+                }
+            }
+        }
+
         private static void HandleException(Exception ex, string message)
         {
             string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");

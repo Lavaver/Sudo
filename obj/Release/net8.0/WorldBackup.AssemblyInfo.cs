@@ -11,13 +11,13 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("WorldBackup")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Lavaver")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("3.1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("3.1.0+a5b9cee913e3afcd33797d47e8b848cf1478a582")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("4.0.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("4.0.0+15a38cc52130b0d76839bf1a628530f2fe97375b")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorldBackup")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorldBackup")]
-[assembly: System.Reflection.AssemblyVersionAttribute("3.1.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("4.0.0.0")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/Lavaver/WorldBackup")]
 
 // 由 MSBuild WriteCodeFragment 类生成。

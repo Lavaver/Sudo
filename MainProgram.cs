@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using WorldBackup.Sumeru;
 
 namespace WorldBackup
 {
@@ -6,6 +8,8 @@ namespace WorldBackup
     {
         static void Main(string[] args)
         {
+            Console.Title = $"WorldBackup | Version {Assembly.GetEntryAssembly().GetName().Version} | Powered By Fontaine Core";
+
             LogConsole.Initialize();
 
             LogConsole.Log("Init", "正在初始化，请稍候", ConsoleColor.Green);
@@ -46,19 +50,23 @@ namespace WorldBackup
                     if (args[6] == "Upload")
                     {
                         // 调用上传方法
-                        WebDAV.Upload(address, account, password, sourceFilePath, destinationPath);
+                        AkashaTerminal.Upload(address, account, password, sourceFilePath, destinationPath);
                     }
                     else if ( args[6] == "Download")
                     {
-                        WebDAV.Download(address, account, password, destinationPath, sourceFilePath);
+                        AkashaTerminal.Download(address, account, password, destinationPath, sourceFilePath);
                     }
                     else if ( args[6] == "Delete")
                     {
-                        WebDAV.Delete(address, account, password, destinationPath);
+                        AkashaTerminal.Delete(address, account, password, destinationPath);
                     }
                     else if (args[6] == "NewFolder")
                     {
-                        WebDAV.NewFolder(address, account, password, destinationPath);
+                        AkashaTerminal.NewFolder(address, account, password, destinationPath);
+                    }
+                    else if (args[6] == "List")
+                    {
+                        AkashaTerminal.List(address, account, password);
                     }
                     else
                     {

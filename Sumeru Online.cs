@@ -1,8 +1,10 @@
 ﻿using System.Net;
+using System.Text;
+using System.Xml.Linq;
 
-namespace WorldBackup
+namespace WorldBackup.Sumeru
 {
-    public class WebDAV
+    public class AkashaTerminal
     {
         /// <summary>
         /// 使用 WebDAV 向在线存储服务上传文件
@@ -168,5 +170,74 @@ namespace WorldBackup
                 LogConsole.Log("WebDAV Folder", $"删除文件时发生错误：{ex.Message}", ConsoleColor.Red);
             }
         }
+
+        /// <summary>
+        /// 以文件形式输出 WebDAV 服务器下的全部文件
+        /// </summary>
+        /// <param name="Address">服务器所在地址（一般提供商会在提供相关服务的地方注明地址）</param>
+        /// <param name="Account">登陆账户（一般为你注册的用户名或邮箱）</param>
+        /// <param name="Password">账户密码 / 访问码（其中访问码需要另行生成，且与主密码是两样东西）</param>
+        public static void List(string Address, string Account, string Password)
+        {
+            try
+            {
+                string sUrl = Address;
+                string strXml = "<?xml version=\"1.0\"?> " +
+                                "<d:propfind xmlns:d=\"DAV:\" xmlns:o=\"urn:schemas-microsoft-com:office:office/\">" +
+                                "<d:prop>" +
+                                "<d:displayname/>" +       // 名称
+                                "<d:getcontentlength/>" +  // 大小
+                                "<d:iscollection/>" +      // 是否文件夹
+                                "<d:getlastmodified/>" +   // 最后修改时间
+                                "</d:prop>" +
+                                "</d:propfind>";
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(sUrl);
+                request.Credentials = new NetworkCredential(Account, Password);
+                request.Method = "PROPFIND";
+                request.ContentType = "text/xml";
+                request.Headers.Add("Translate", "f");
+
+                using (Stream requestStream = request.GetRequestStream())
+                {
+                    byte[] xmlBytes = Encoding.UTF8.GetBytes(strXml);
+                    requestStream.Write(xmlBytes, 0, xmlBytes.Length);
+                }
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (Stream responseStream = response.GetResponseStream())
+                using (StreamReader reader = new StreamReader(responseStream, Encoding.UTF8))
+                {
+                    string responseXml = reader.ReadToEnd();
+                    File.WriteAllText(@"list.xml", responseXml);
+
+                    XDocument doc = XDocument.Parse(responseXml);
+
+                    foreach (XElement prop in doc.Descendants(XName.Get("prop", "DAV:")))
+                    {
+                        XElement displayName = prop.Element(XName.Get("displayname", "DAV:"));
+                        XElement contentLength = prop.Element(XName.Get("getcontentlength", "DAV:"));
+                        XElement isCollection = prop.Element(XName.Get("iscollection", "DAV:"));
+                        XElement lastModified = prop.Element(XName.Get("getlastmodified", "DAV:"));
+
+                        if (displayName != null)
+                            Console.WriteLine("Display Name: " + displayName.Value);
+                        if (contentLength != null)
+                            Console.WriteLine("Content Length: " + contentLength.Value);
+                        if (isCollection != null)
+                            Console.WriteLine("Is Collection: " + isCollection.Value);
+                        if (lastModified != null)
+                            Console.WriteLine("Last Modified: " + lastModified.Value);
+
+                        Console.WriteLine();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogConsole.Log("WebDAV Download", $"发生了 {0} 个错误：{ex.Message}", ConsoleColor.Red);
+            }
+        }
+
     }
 }
