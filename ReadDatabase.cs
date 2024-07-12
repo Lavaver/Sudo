@@ -3,6 +3,7 @@ using System.IO;  // 引入 System.IO 命名空间以便进行文件检查
 using System.Linq;
 using System.Security.Cryptography;
 using System.Xml.Linq;
+using com.Lavaver.WorldBackup.Core;
 
 namespace WorldBackup
 {

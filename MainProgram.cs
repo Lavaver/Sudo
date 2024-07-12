@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Reflection;
 using WorldBackup.Sumeru;
+using com.Lavaver.WorldBackup.Core;
 
 namespace WorldBackup
 {
+    /// <summary>
+    /// 如果你要说我为什么不创建文件夹做分类？我只想对你说你太天真了，首先这个项目基本没什么人看，其次是项目初期本身就是不用文件夹整理有历史包袱，最后是这个程序有非常多代码文件都依靠底层核心（例如 LogConsole）支持，动一个项目编译不过去<br/>
+    /// 最重要的是根据我的习惯一旦新建文件夹把代码放进去那必须要下意识遵循 Java 包名规则，如果有爱好者想用新版代码就必须要把那些组件命名空间全部改为包名非常麻烦
+    /// </summary>
     internal class MainProgram
     {
         static void Main(string[] args)
         {
-            Console.Title = $"WorldBackup | Version {Assembly.GetEntryAssembly().GetName().Version} | Powered By Fontaine Core";
+            Console.Title = $"WorldBackup {Assembly.GetEntryAssembly().GetName().Version}";
 
             LogConsole.Initialize();
 
@@ -22,9 +27,13 @@ namespace WorldBackup
                 {
                     ReadDatabase.Run();
                 }
-                else if (args[0] == "-clean")
+                else if (args[0] == "-deldatabase")
                 {
                     DelDatabase.DelFile();
+                }
+                else if (args[0] == "-clear")
+                {
+                    Compression_and_Cleanup.Run();
                 }
                 else if (args[0] == "-deldata")
                 {

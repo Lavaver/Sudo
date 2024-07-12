@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using com.Lavaver.WorldBackup.Core;
+using System.Net;
 using System.Text;
 using System.Xml.Linq;
 
@@ -20,42 +21,37 @@ namespace WorldBackup.Sumeru
             {
                 LogConsole.Log("WebDAV Upload", $"正在构建请求（访问码：{Password}）", ConsoleColor.Blue);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(Address + destinationPath);
-                req.Credentials = new NetworkCredential(Account, Password);//用户名,密码
+                req.Credentials = new NetworkCredential(Account, Password);
                 req.PreAuthenticate = true;
                 req.Method = "PUT";
                 req.AllowWriteStreamBuffering = true;
-                req.Timeout = System.Threading.Timeout.Infinite; // 使用无限超时时间确保大文件能够顺利上传
+                req.Timeout = System.Threading.Timeout.Infinite; // 无限超时时间以确保大文件上传顺利
 
                 LogConsole.Log("WebDAV Upload", $"正在准备要上传的文件（{SourceFilePath} => {destinationPath}）", ConsoleColor.Blue);
 
-                // Retrieve request stream
-                Stream reqStream = req.GetRequestStream();
-
-                // Open the local file
-                FileStream rdr = new FileStream(SourceFilePath, FileMode.Open);
-
-                // Allocate byte buffer to hold file contents
-                byte[] inData = new byte[4096];
-
-                LogConsole.Log("WebDAV Upload", $"正在上传文件（{SourceFilePath} => {destinationPath}）。请稍候，这需要 1~10 分钟不等的时间", ConsoleColor.Blue);
-                // loop through the local file reading each data block
-                //  and writing to the request stream buffer
-                int bytesRead = rdr.Read(inData, 0, inData.Length);
-                while (bytesRead > 0)
+                // 使用 using 语句确保资源释放
+                using (FileStream rdr = new FileStream(SourceFilePath, FileMode.Open))
+                using (Stream reqStream = req.GetRequestStream())
                 {
-                    reqStream.Write(inData, 0, bytesRead);
-                    bytesRead = rdr.Read(inData, 0, inData.Length);
+                    byte[] buffer = new byte[8192]; // 使用较大的缓冲区提高性能
+
+                    int bytesRead;
+                    while ((bytesRead = rdr.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        reqStream.Write(buffer, 0, bytesRead);
+                    }
                 }
 
-                rdr.Close();
-                reqStream.Close();
-
-                req.GetResponse();
-                LogConsole.Log("WebDAV Upload", $"完成上传（{SourceFilePath} => {destinationPath}）", ConsoleColor.Green);
+                // 获取响应以确认上传状态
+                using (WebResponse response = req.GetResponse())
+                {
+                    // 可以在这里检查响应状态码等信息
+                    LogConsole.Log("WebDAV Upload", $"完成上传（{SourceFilePath} => {destinationPath}）", ConsoleColor.Green);
+                }
             }
             catch (Exception ex)
             {
-                LogConsole.Log("WebDAV Upload", $"上传文件时发生错误：{ex.Message}",ConsoleColor.Red);
+                LogConsole.Log("WebDAV Upload", $"上传文件时发生错误：{ex.Message}", ConsoleColor.Red);
             }
         }
 
@@ -221,15 +217,23 @@ namespace WorldBackup.Sumeru
                         XElement lastModified = prop.Element(XName.Get("getlastmodified", "DAV:"));
 
                         if (displayName != null)
+                        {
                             Console.WriteLine("Display Name: " + displayName.Value);
+                        }
                         if (contentLength != null)
+                        {
                             Console.WriteLine("Content Length: " + contentLength.Value);
+                        }
                         if (isCollection != null)
+                        {
                             Console.WriteLine("Is Collection: " + isCollection.Value);
+                        }
                         if (lastModified != null)
+                        {
                             Console.WriteLine("Last Modified: " + lastModified.Value);
+                        }
 
-                        Console.WriteLine();
+                        Console.WriteLine(); // 输出一个空行分隔每个属性的输出
                     }
                 }
             }
@@ -238,6 +242,8 @@ namespace WorldBackup.Sumeru
                 LogConsole.Log("WebDAV Download", $"发生了 {0} 个错误：{ex.Message}", ConsoleColor.Red);
             }
         }
+
+
 
     }
 }

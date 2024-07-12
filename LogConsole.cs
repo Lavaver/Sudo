@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace WorldBackup
+namespace com.Lavaver.WorldBackup.Core
 {
     internal class LogConsole
     {
