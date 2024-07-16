@@ -3,7 +3,7 @@ using System.Net;
 using System.Xml.Linq;
 using com.Lavaver.WorldBackup.Core;
 
-namespace WorldBackup
+namespace com.Lavaver.WorldBackup
 {
     /// <summary>
     /// NTP-C（Network Time Protocol Calibrators，网络时间协议校准器） - 实时比对 NTP 与系统时间，并在备份中直接使用 NTP 时间<br/>

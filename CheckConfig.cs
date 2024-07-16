@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Xml;
 
-namespace WorldBackup
+namespace com.Lavaver.WorldBackup
 {
     internal class CheckConfig
     {

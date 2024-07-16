@@ -3,7 +3,7 @@ using System.Net;
 using System.Text;
 using System.Xml.Linq;
 
-namespace WorldBackup.Sumeru
+namespace com.Lavaver.WorldBackup.Sumeru
 {
     public class AkashaTerminal
     {

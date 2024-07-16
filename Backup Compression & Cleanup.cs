@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace WorldBackup
+namespace com.Lavaver.WorldBackup
 {
     /// <summary>
     /// 备份压缩与清理（公共）类

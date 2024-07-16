@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Xml.Linq;
 using com.Lavaver.WorldBackup.Core;
 
-namespace WorldBackup
+namespace com.Lavaver.WorldBackup
 {
     internal class ReadDatabase
     {

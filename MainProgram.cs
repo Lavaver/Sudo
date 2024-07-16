@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using WorldBackup.Sumeru;
+using com.Lavaver.WorldBackup.Sumeru;
 using com.Lavaver.WorldBackup.Core;
 
-namespace WorldBackup
+namespace com.Lavaver.WorldBackup
 {
     /// <summary>
     /// 如果你要说我为什么不创建文件夹做分类？我只想对你说你太天真了，首先这个项目基本没什么人看，其次是项目初期本身就是不用文件夹整理有历史包袱，最后是这个程序有非常多代码文件都依靠底层核心（例如 LogConsole）支持，动一个项目编译不过去<br/>
@@ -86,6 +86,10 @@ namespace WorldBackup
                 else if (args[0] == "-config")
                 {
                     AfterConfig.Run();
+                }
+                else if (args[0] == "-bedrock")
+                {
+                    Bedrock.Backup.Run();
                 }
                 else
                 {

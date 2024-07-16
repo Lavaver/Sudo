@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace WorldBackup
+namespace com.Lavaver.WorldBackup
 {
     public class FirstBackup
     {
@@ -51,7 +51,7 @@ namespace WorldBackup
             return (source, backupto);
         }
 
-        private static void PerformBackup(string source, string backupto)
+        public static void PerformBackup(string source, string backupto)
         {
             if (!Directory.Exists(backupto))
             {

@@ -1,7 +1,7 @@
 ﻿using com.Lavaver.WorldBackup.Core;
 using System.Xml.Linq;
 
-namespace WorldBackup
+namespace com.Lavaver.WorldBackup
 {
     internal class DelDatabase
     {

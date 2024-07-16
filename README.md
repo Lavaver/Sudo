@@ -40,6 +40,8 @@
 
 `-WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] <Upload/Download/Delete/NewFolder/List>` - 使用 Semeru Module 将文件上传到服务器。亦可进行下载、删除文件和创建文件夹操作。
 
+`-bedrock` - 备份基岩版全部存档（需要管理员权限）
+
 > Semeru Module 根据不同的操作模式会改变这些参数的可用性。详见附录《Semeru Module 操作参数关系表》。
 
 ## 灵感
@@ -64,7 +66,8 @@
 
 > 无需或可选的参数可以使用 `~` 指代忽略这个参数
 
-## 最近更新速报 | Release Version 4.1
+## 最近更新速报 | Release Version 4.3
 
-1. 实装“备份压缩与清理”功能。使用 `-clear` 参数将会自动检查时间过于久远的备份，并列表让用户使用 `↑` 、 `↓` 和 `Enter` 键选择一个或多个过时备份，然后使用 `F1` 或 `F2` 压缩或直接删除过时备份。此功能与 `-deldata` 参数互为独立。
-2. 原 `WorldBackup.LogConsole` 命名空间现更名为 `com.Lavaver.WorldBackup.Core.LogConsole`
+1. 实装基岩版存档备份功能。运行 `-bedrock` 参数即可备份全部基岩版存档。
+
+> 注：由于 WindowsApps 文件夹全部被加密了，因此我用了“先读取存档文件夹的文件（及其子文件夹），并将 Byte 数据存入预存区，接着从预存区提取文件（及其子文件夹）并打包成 `Bedrock_Backup.zip` 文件”这种《奇 技 淫 巧》绕过加密限制

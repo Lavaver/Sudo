@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using com.Lavaver.WorldBackup.Core;
 
-namespace WorldBackup
+namespace com.Lavaver.WorldBackup
 {
     internal class Backup
     {

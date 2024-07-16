@@ -5,9 +5,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyVersion>4.1</AssemblyVersion>
-    <FileVersion>4.1</FileVersion>
-    <Version>4.1.0</Version>
+    <AssemblyVersion>4.3</AssemblyVersion>
+    <FileVersion>4.3.0.5008</FileVersion>
+    <Version>4.3.0</Version>
     <Title>Worldbackup</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Lavaver/WorldBackup</RepositoryUrl>
