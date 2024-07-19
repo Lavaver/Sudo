@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+  <source>默认备份来源文件夹</source>
+  <backupto>默认备份到文件夹</backupto>
+  <NTP-Server>time.windows.com</NTP-Server>
+</Config>

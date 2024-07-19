@@ -7,7 +7,15 @@ namespace com.Lavaver.WorldBackup
 {
     /// <summary>
     /// NTP-C（Network Time Protocol Calibrators，网络时间协议校准器） - 实时比对 NTP 与系统时间，并在备份中直接使用 NTP 时间<br/>
-    /// 注：该功能需要 Internet 支持。若没有条件提供 Internet ，则你需要使用离线版。该功能目前为实验性功能，随时可能会重构其运作方式或删除。如果你在备份时遇到了异常信息，请复制下来并反馈到 https://github.com/lavaver/worldbackup/issues
+    /// 注：该功能需要 Internet 支持。若没有条件提供 Internet ，则你需要使用离线版。该功能目前为实验性功能，随时可能会重构其运作方式或删除。如果你在备份时遇到了异常信息，请复制下来并反馈到 https://github.com/lavaver/worldbackup/issues<br/>
+    /// 小剧场：<br/>
+    /// 基友：别在这理发店<br/>
+    /// 我：就要~小盐巴~<br/>
+    /// 我：我能不能撅了你（）<br/>
+    /// 基友：（没回应）<br/>
+    /// 我：你不说默认同意了哦（）<br/>
+    /// 我：（prprprprprprprprprprprprprprprprprprprprprprprprprprprpr）<br/>
+    /// 基友：（感动得哭了）
     /// </summary>
     internal class NTPC
     {

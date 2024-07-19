@@ -42,7 +42,15 @@
 
 `-bedrock` - 备份基岩版全部存档（需要管理员权限）
 
+`-MultiExt <FirstVolumePath> <VolumeTotal> <UnzipPath> [<TempPath>] <7z/winrar>` - 分卷解压
+
 > Semeru Module 根据不同的操作模式会改变这些参数的可用性。详见附录《Semeru Module 操作参数关系表》。
+
+## 第三方引用
+
+> 注：除非另行说明，本软件不会使用 NuGet 包和 DLL ，只会使用其开源代码。为了使 squid-box/SevenZipSharp 的 .NET Standard 2.0 带有 #UNMANAGED 的代码段能够在 .NET Core 8 生效，在实际修改时去除了 #UNMANAGED 代码块以在 .NET Core 8 编译器能顺利编译。并且为了尊重原作者及 GPL/LGPL ，涉及 `com.Lavaver.WorldBackup.ThirdUsing.squidbox.SevenZip` 部分代码使用 GPL/LGPL 协议开源，主程序部分则维持 MIT 不变。
+
+- [squid-box/SevenZipSharp](https://github.com/squid-box/SevenZipSharp/)
 
 ## 灵感
 

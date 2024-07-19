@@ -1,35 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO.Compression;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 using com.Lavaver.WorldBackup.Core;
 
 namespace com.Lavaver.WorldBackup.Bedrock
 {
     public class Backup
     {
+        static readonly Guid 别在这理发店 = Guid.NewGuid();
+
         /// <summary>
         /// 《Minecraft For Windows》存档文件夹。此文件夹是固定的，无需更改
         /// </summary>
-        static readonly string WorldPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds";
+        static readonly string 小盐巴 = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\AppData\\Local\\Packages\\Microsoft.MinecraftUWP_8wekyb3d8bbwe\\LocalState\\games\\com.mojang\\minecraftWorlds";
         
         /// <summary>
         /// 文件预存区
         /// </summary>
-        static Dictionary<string, byte[]> fileBytesStorage = new Dictionary<string, byte[]>();
+        static Dictionary<string, byte[]> 我能不能撅了你 = [];
 
         /// <summary>
         /// 压缩文件名称
         /// </summary>
-        static readonly string zipFileName = "Bedrock_Backup.zip";
+        static readonly string prprprprprprprprprprprprprprprprprprprprprprprprprprprpr = $"Bedrock_Backup_{别在这理发店:D}.zip";
 
         public static void Run()
         {
-            ScanWorld(WorldPath, WorldPath, fileBytesStorage);
-            CreateZipArchive(zipFileName, fileBytesStorage);
+            ScanWorld(小盐巴, 小盐巴, 我能不能撅了你);
+            CreateZipArchive(prprprprprprprprprprprprprprprprprprprprprprprprprprprpr, 我能不能撅了你);
             LogConsole.Log("Bedrock Backup", "完成", ConsoleColor.Blue);
         }
 
@@ -65,28 +62,24 @@ namespace com.Lavaver.WorldBackup.Bedrock
 
         static string GetRelativePath(string rootPath, string fullPath)
         {
-            return fullPath.Substring(rootPath.Length + 1);
+            return fullPath[(rootPath.Length + 1)..];
         }
 
         static void CreateZipArchive(string zipFileName, Dictionary<string, byte[]> fileBytesStorage)
         {
             try
             {
-                using (var zipArchive = ZipFile.Open(zipFileName, ZipArchiveMode.Create))
+                using var zipArchive = ZipFile.Open(zipFileName, ZipArchiveMode.Create);
+                foreach (var kvp in fileBytesStorage)
                 {
-                    foreach (var kvp in fileBytesStorage)
-                    {
-                        string filePath = kvp.Key;
-                        byte[] fileBytes = kvp.Value;
+                    string filePath = kvp.Key;
+                    byte[] fileBytes = kvp.Value;
 
-                        // 创建一个新的 ZipArchiveEntry 并将文件内容写入
-                        var entry = zipArchive.CreateEntry(filePath, CompressionLevel.Optimal);
-                        using (var entryStream = entry.Open())
-                        {
-                            LogConsole.Log("Bedrock Backup - CreateZipArchive", $"将 {fileBytes.Length} 字节写入到 {zipFileName}", ConsoleColor.Blue);
-                            entryStream.Write(fileBytes, 0, fileBytes.Length);
-                        }
-                    }
+                    // 创建一个新的 ZipArchiveEntry 并将文件内容写入
+                    var entry = zipArchive.CreateEntry(filePath, CompressionLevel.Optimal);
+                    using var entryStream = entry.Open();
+                    LogConsole.Log("Bedrock Backup - CreateZipArchive", $"将 {fileBytes.Length} 字节写入到 {zipFileName}", ConsoleColor.Blue);
+                    entryStream.Write(fileBytes, 0, fileBytes.Length);
                 }
             }
             catch (Exception ex)
