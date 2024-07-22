@@ -7,6 +7,9 @@ namespace com.Lavaver.WorldBackup.Sumeru
 {
     public class AkashaTerminal
     {
+
+
+
         /// <summary>
         /// 使用 WebDAV 向在线存储服务上传文件
         /// </summary>
@@ -15,14 +18,19 @@ namespace com.Lavaver.WorldBackup.Sumeru
         /// <param name="Password">账户密码 / 访问码（其中访问码需要另行生成，且与主密码是两样东西）</param>
         /// <param name="SourceFilePath">来源文件地址（必须为文件结尾，如：D:\xxx\xxx\xxx.xxx）</param>
         /// <param name="destinationPath">服务器上文件的目标路径（相对于服务器根目录路径。在没有指定的情况下默认为根目录。如果你的服务商特别限制了访问目录源，则你必须要使用该参数）</param>
-        public static void Upload(string Address, string Account, string Password, string SourceFilePath, string destinationPath = "/")
+        /// <param name="PreAuthenticate">预认证（默认为开，当认证不通过时可以考虑将其设置为 false）</param>
+        /// <param name="Buffer">缓冲区大小。它接受 int 和 long 作为参数输入（默认为 8192，32 位）</param>
+        public static void Upload(string Address, string Account, string Password, string SourceFilePath, string destinationPath = "/", bool PreAuthenticate = true, long Buffer = 8192)
         {
             try
             {
-                LogConsole.Log("WebDAV Upload", $"正在构建请求（访问码：{Password}）", ConsoleColor.Blue);
+                LogConsole.Log("WebDAV Upload", "正在构建请求", ConsoleColor.Blue);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(Address + destinationPath);
                 req.Credentials = new NetworkCredential(Account, Password);
-                req.PreAuthenticate = true;
+                if (PreAuthenticate)
+                {
+                    req.PreAuthenticate = true;
+                }
                 req.Method = "PUT";
                 req.AllowWriteStreamBuffering = true;
                 req.Timeout = System.Threading.Timeout.Infinite; // 无限超时时间以确保大文件上传顺利
@@ -33,7 +41,7 @@ namespace com.Lavaver.WorldBackup.Sumeru
                 using (FileStream rdr = new FileStream(SourceFilePath, FileMode.Open))
                 using (Stream reqStream = req.GetRequestStream())
                 {
-                    byte[] buffer = new byte[8192]; // 使用较大的缓冲区提高性能
+                    byte[] buffer = new byte[Buffer]; // 使用用户自定义缓冲区大小
 
                     int bytesRead;
                     while ((bytesRead = rdr.Read(buffer, 0, buffer.Length)) > 0)
@@ -116,23 +124,27 @@ namespace com.Lavaver.WorldBackup.Sumeru
         /// <param name="DestinationPath">服务器上文件的目标路径（相对于服务器根目录路径。必须指定一个目录）</param>
         /// <param name="Account">登陆账户（一般为你注册的用户名或邮箱）</param>
         /// <param name="Password">账户密码 / 访问码（其中访问码需要另行生成，且与主密码是两样东西）</param>
-        public static void Delete(string Address, string Account, string Password, string DestinationPath)
+        /// <param name="PreAuthenticate">预认证（默认为开，当认证不通过时可以考虑将其设置为 false）</param>
+        public static void Delete(string Address, string Account, string Password, string DestinationPath, bool PreAuthenticate = true)
         {
             try
             {
-                LogConsole.Log("WebDAV Delect", $"正在删除文件（{DestinationPath}）", ConsoleColor.Blue);
+                LogConsole.Log("WebDAV Delete", $"正在删除文件（{DestinationPath}）", ConsoleColor.Blue);
                 HttpWebRequest req = (HttpWebRequest)WebRequest.Create(Address + DestinationPath);
                 req.Credentials = new NetworkCredential(Account, Password);
-                req.PreAuthenticate = true;
+                if (PreAuthenticate)
+                {
+                    req.PreAuthenticate = true;
+                }
                 req.Method = "DELETE";
                 req.AllowWriteStreamBuffering = true;
 
                 req.GetResponse();
-                LogConsole.Log("WebDAV Delect", $"你已成功地删除了 {DestinationPath}", ConsoleColor.Green);
+                LogConsole.Log("WebDAV Delete", $"你已成功地删除了 {DestinationPath}", ConsoleColor.Green);
             }
             catch (Exception ex)
             {
-                LogConsole.Log("WebDAV Delect", $"删除文件时发生错误：{ex.Message}", ConsoleColor.Red);
+                LogConsole.Log("WebDAV Delete", $"删除文件时发生错误：{ex.Message}", ConsoleColor.Red);
             }
         }
 

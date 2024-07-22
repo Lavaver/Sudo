@@ -38,19 +38,11 @@
 
 `-config` - 进入配置页面并进行软件配置
 
-`-WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] <Upload/Download/Delete/NewFolder/List>` - 使用 Semeru Module 将文件上传到服务器。亦可进行下载、删除文件和创建文件夹操作。
+`-WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] [<PreAuthenticate:true/false>] [<Buffer>] <Upload/Download/Delete/NewFolder/List>` - 使用 Semeru Module 将文件上传到服务器。亦可进行下载、删除文件和创建文件夹操作。
 
 `-bedrock` - 备份基岩版全部存档（需要管理员权限）
 
-`-MultiExt <FirstVolumePath> <VolumeTotal> <UnzipPath> [<TempPath>] <7z/winrar>` - 分卷解压
-
 > Semeru Module 根据不同的操作模式会改变这些参数的可用性。详见附录《Semeru Module 操作参数关系表》。
-
-## 第三方引用
-
-> 注：除非另行说明，本软件不会使用 NuGet 包和 DLL ，只会使用其开源代码。为了使 squid-box/SevenZipSharp 的 .NET Standard 2.0 带有 #UNMANAGED 的代码段能够在 .NET Core 8 生效，在实际修改时去除了 #UNMANAGED 代码块以在 .NET Core 8 编译器能顺利编译。并且为了尊重原作者及 GPL/LGPL ，涉及 `com.Lavaver.WorldBackup.ThirdUsing.squidbox.SevenZip` 部分代码使用 GPL/LGPL 协议开源，主程序部分则维持 MIT 不变。
-
-- [squid-box/SevenZipSharp](https://github.com/squid-box/SevenZipSharp/)
 
 ## 灵感
 
@@ -71,11 +63,30 @@
 | Password | 必须 | 必须 | 必须 | 必须 | 必须 |
 | SourceFilePath | 必须 | 必须（用于指代保存路径） | 无需 | 无需 | 无需 |
 | DestinationPath | 可选 | 必须 | 必须 | 必须 | 无需 |
+| PreAuthenticate | 必须 | 无需 | 必须 | 无需 | 无需 |
+| Buffer | 必须（`int`/`long`） | 无需 | 无需 | 无需 | 无需 |
 
 > 无需或可选的参数可以使用 `~` 指代忽略这个参数
 
-## 最近更新速报 | Release Version 4.3
+> 如果你只需要上传，下面提供了典型的使用方法：
+>
+> Windows PowerShell：
+> ```bash
+> PS D:\repos\WorldBackup\bin\Release\net8.0> .\WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
+>```
+>
+> Command（cmd）：
+>```bash
+> D:\repos\WorldBackup\bin\Release\net8.0> WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
+>```
 
-1. 实装基岩版存档备份功能。运行 `-bedrock` 参数即可备份全部基岩版存档。
+## 例外
 
-> 注：由于 WindowsApps 文件夹全部被加密了，因此我用了“先读取存档文件夹的文件（及其子文件夹），并将 Byte 数据存入预存区，接着从预存区提取文件（及其子文件夹）并打包成 `Bedrock_Backup.zip` 文件”这种《奇 技 淫 巧》绕过加密限制
+- Minecraft: Bedrock Edition 备份功能在 Linux/Unix 不可用。因为此功能为 Windows 专属。其他功能均可用。
+
+## 最近更新速报 | Release Version 4.4
+
+- 修复 （可能的）运行时错误：在 LogConsole.cs 第 47 行未对其进行 `null` 检查
+- Sumere Module 的 `Upload` 与 `Delete` 方法新增 `PreAuthenticate` 与 `Buffer` 参数，用于让用户决定是否预先认证及设定缓冲区大小
+
+> 注：CD/DVD 及 DVD-RW/DVD+RW 的冷备份刻录功能最近正在画大饼筹备中，写成之后直接进入 5.0 大版本

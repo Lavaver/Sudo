@@ -47,7 +47,7 @@ namespace com.Lavaver.WorldBackup
                 {
                     if (args.Length < 6)
                     {
-                        LogConsole.Log("Init", "用法: YourApp.exe -WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] <Upload/Download/Delete/NewFolder>", ConsoleColor.Yellow);
+                        LogConsole.Log("Init", "用法: YourApp.exe -WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] [<PreAuthenticate:true/false>] [<Buffer>] <Upload/Download/Delete/NewFolder>", ConsoleColor.Yellow);
                         return; 
                     }
                     string address = args[1];
@@ -55,25 +55,27 @@ namespace com.Lavaver.WorldBackup
                     string password = args[3];
                     string sourceFilePath = args[4];
                     string destinationPath = args.Length > 5 ? args[5] : "/"; // 默认为根路径
+                    bool PreAuthenticate = Convert.ToBoolean(args[6]);
+                    long Buffer = Convert.ToInt64(args[7]);
 
-                    if (args[6] == "Upload")
+                    if (args[8] == "Upload")
                     {
                         // 调用上传方法
-                        AkashaTerminal.Upload(address, account, password, sourceFilePath, destinationPath);
+                        AkashaTerminal.Upload(address, account, password, sourceFilePath, destinationPath, PreAuthenticate, Buffer);
                     }
-                    else if ( args[6] == "Download")
+                    else if ( args[8] == "Download")
                     {
                         AkashaTerminal.Download(address, account, password, destinationPath, sourceFilePath);
                     }
-                    else if ( args[6] == "Delete")
+                    else if ( args[8] == "Delete")
                     {
-                        AkashaTerminal.Delete(address, account, password, destinationPath);
+                        AkashaTerminal.Delete(address, account, password, destinationPath, PreAuthenticate);
                     }
-                    else if (args[6] == "NewFolder")
+                    else if (args[8] == "NewFolder")
                     {
                         AkashaTerminal.NewFolder(address, account, password, destinationPath);
                     }
-                    else if (args[6] == "List")
+                    else if (args[8] == "List")
                     {
                         AkashaTerminal.List(address, account, password);
                     }
