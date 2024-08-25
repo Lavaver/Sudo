@@ -2,6 +2,7 @@
 using System.Reflection;
 using com.Lavaver.WorldBackup.Sumeru;
 using com.Lavaver.WorldBackup.Core;
+using com.Lavaver.WorldBackup.Database;
 
 namespace com.Lavaver.WorldBackup
 {
@@ -13,95 +14,94 @@ namespace com.Lavaver.WorldBackup
     {
         static void Main(string[] args)
         {
-            Console.Title = $"WorldBackup {Assembly.GetEntryAssembly().GetName().Version}";
+            var entryAssembly = Assembly.GetEntryAssembly();
+            var version = entryAssembly?.GetName().Version ?? new Version(0, 0, 0, 0);
+            Console.Title = $"WorldBackup CLI+ | Version {version}";
 
             LogConsole.Initialize();
 
             LogConsole.Log("Init", "正在初始化，请稍候", ConsoleColor.Green);
 
-            // 检查是否有命令行参数
             if (args.Length > 0)
             {
-                // 如果存在 -database 参数，则调用 ReadDatabase.Run() 方法
-                if (args[0] == "-database")
-                {
-                    ReadDatabase.Run();
-                }
-                else if (args[0] == "-deldatabase")
-                {
-                    DelDatabase.DelFile();
-                }
-                else if (args[0] == "-clear")
-                {
-                    Compression_and_Cleanup.Run();
-                }
-                else if (args[0] == "-deldata")
-                {
-                    DelDatabase.DelData();
-                }
-                else if (args[0] == "-recovery")
-                {
-                    RecoveryFile.RestoreData();
-                }
-                else if (args[0] == "-WebDAV")
-                {
-                    if (args.Length < 6)
-                    {
-                        LogConsole.Log("Init", "用法: YourApp.exe -WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] [<PreAuthenticate:true/false>] [<Buffer>] <Upload/Download/Delete/NewFolder>", ConsoleColor.Yellow);
-                        return; 
-                    }
-                    string address = args[1];
-                    string account = args[2];
-                    string password = args[3];
-                    string sourceFilePath = args[4];
-                    string destinationPath = args.Length > 5 ? args[5] : "/"; // 默认为根路径
-                    bool PreAuthenticate = Convert.ToBoolean(args[6]);
-                    long Buffer = Convert.ToInt64(args[7]);
-
-                    if (args[8] == "Upload")
-                    {
-                        // 调用上传方法
-                        AkashaTerminal.Upload(address, account, password, sourceFilePath, destinationPath, PreAuthenticate, Buffer);
-                    }
-                    else if ( args[8] == "Download")
-                    {
-                        AkashaTerminal.Download(address, account, password, destinationPath, sourceFilePath);
-                    }
-                    else if ( args[8] == "Delete")
-                    {
-                        AkashaTerminal.Delete(address, account, password, destinationPath, PreAuthenticate);
-                    }
-                    else if (args[8] == "NewFolder")
-                    {
-                        AkashaTerminal.NewFolder(address, account, password, destinationPath);
-                    }
-                    else if (args[8] == "List")
-                    {
-                        AkashaTerminal.List(address, account, password);
-                    }
-                    else
-                    {
-                        LogConsole.Log("Init", "不正确的操作模式", ConsoleColor.Red);
-                        return;
-                    }
-                }
-                else if (args[0] == "-config")
-                {
-                    AfterConfig.Run();
-                }
-                else if (args[0] == "-bedrock")
-                {
-                    Bedrock.Backup.Run();
-                }
-                else
-                {
-                    LogConsole.Log("Init", "未识别的命令行参数", ConsoleColor.Red);
-                }
+                HandleCommandLineArgs(args);
             }
             else
             {
-                // 如果没有命令行参数，则调用 Init.Run() 方法
                 Init.Run();
+            }
+        }
+
+        private static void HandleCommandLineArgs(string[] args)
+        {
+            switch (args[0])
+            {
+                case "-database":
+                    ReadDatabase.Run();
+                    break;
+                case "-deldatabase":
+                    DelDatabase.DelFile();
+                    break;
+                case "-clear":
+                    Compression_and_Cleanup.Run();
+                    break;
+                case "-deldata":
+                    DelDatabase.DelData();
+                    break;
+                case "-recovery":
+                    RecoveryFile.RestoreData();
+                    break;
+                case "-WebDAV":
+                    HandleWebDAVArgs(args);
+                    break;
+                case "-config":
+                    AfterConfig.Run();
+                    break;
+                case "-bedrock":
+                    Bedrock.Backup.Run();
+                    break;
+                default:
+                    LogConsole.Log("Init", "未识别的命令行参数", ConsoleColor.Red);
+                    break;
+            }
+        }
+
+        private static void HandleWebDAVArgs(string[] args)
+        {
+            if (args.Length < 6)
+            {
+                LogConsole.Log("Init", "用法: YourApp.exe -WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] [<PreAuthenticate:true/false>] [<Buffer>] <Upload/Download/Delete/NewFolder>", ConsoleColor.Yellow);
+                return;
+            }
+
+            string address = args[1];
+            string account = args[2];
+            string password = args[3];
+            string sourceFilePath = args[4];
+            string destinationPath = args.Length > 5 ? args[5] : "/"; // 默认为根路径
+            bool preAuthenticate = Convert.ToBoolean(args[6]);
+            long buffer = Convert.ToInt64(args[7]);
+
+            switch (args[8])
+            {
+                case "Upload":
+                    AkashaTerminal.Upload(address, account, password, sourceFilePath, destinationPath, preAuthenticate, buffer);
+                    break;
+                case "Download":
+                    AkashaTerminal.Download(address, account, password, destinationPath, sourceFilePath);
+                    break;
+                case "Delete":
+                    AkashaTerminal.Delete(address, account, password, destinationPath, preAuthenticate);
+                    break;
+                case "NewFolder":
+                    AkashaTerminal.NewFolder(address, account, password, destinationPath);
+                    break;
+                case "List":
+                    AkashaTerminal.List(address, account, password);
+                    break;
+                default:
+                    LogConsole.Log("Init", "不正确的操作模式", ConsoleColor.Red);
+                    break;
             }
         }
     }

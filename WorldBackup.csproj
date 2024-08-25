@@ -5,9 +5,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyVersion>4.4</AssemblyVersion>
-    <FileVersion>4.4.0.5009</FileVersion>
-    <Version>4.4.0</Version>
+    <AssemblyVersion>5.0.0</AssemblyVersion>
+    <FileVersion>5.0</FileVersion>
+    <Version>5.0.0</Version>
     <Title>Worldbackup</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Lavaver/WorldBackup</RepositoryUrl>
@@ -15,6 +15,12 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Buring\**" />
+    <EmbeddedResource Remove="Buring\**" />
+    <None Remove="Buring\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="outusing\Form1.cs" />
@@ -36,5 +42,7 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
+
+  <Import Project="WorldBackup SharedProject\WorldBackup SharedProject.projitems" Label="Shared" />
 
 </Project>

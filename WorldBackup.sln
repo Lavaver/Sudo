@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldBackup", "WorldBackup.csproj", "{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldBackup", "WorldBackup.csproj", "{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WorldBackup SharedProject", "WorldBackup SharedProject\WorldBackup SharedProject.shproj", "{3228C9FC-B1BD-4674-AFFD-525746C9B529}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,5 +23,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0799391D-F158-49B2-AE7F-3189113B1ADB}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		WorldBackup SharedProject\WorldBackup SharedProject.projitems*{3228c9fc-b1bd-4674-affd-525746c9b529}*SharedItemsImports = 13
+		WorldBackup SharedProject\WorldBackup SharedProject.projitems*{c1584e0d-966f-40cc-b006-afff0f73c0c3}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

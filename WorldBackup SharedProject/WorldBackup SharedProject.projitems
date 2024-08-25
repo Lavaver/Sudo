@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>3228c9fc-b1bd-4674-affd-525746c9b529</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>WorldBackup_SharedProject</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AbstractID.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AfterConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Backup Compression &amp; Cleanup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Backup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bedrock\Backup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CheckConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DelDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FirstBackup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Init.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogConsole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Network Time Protocol Calibrators (NTP-C).cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ReadDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RecoveryFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sumeru Online.cs" />
+  </ItemGroup>
+</Project>

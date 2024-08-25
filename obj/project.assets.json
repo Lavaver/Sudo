@@ -11,7 +11,7 @@
     "C:\\Users\\vvv\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "4.4.0",
+    "version": "5.0.0",
     "restore": {
       "projectUniqueName": "D:\\repos\\WorldBackup\\WorldBackup.csproj",
       "projectName": "WorldBackup",
@@ -67,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

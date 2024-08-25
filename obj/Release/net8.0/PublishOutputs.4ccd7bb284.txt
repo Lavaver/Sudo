@@ -1,0 +1,8 @@
+D:\repos\WorldBackup\bin\Release\net8.0\publish\WorldBackup.exe
+D:\repos\WorldBackup\bin\Release\net8.0\publish\WorldBackup.dll
+D:\repos\WorldBackup\bin\Release\net8.0\publish\WorldBackup.deps.json
+D:\repos\WorldBackup\bin\Release\net8.0\publish\WorldBackup.runtimeconfig.json
+D:\repos\WorldBackup\bin\Release\net8.0\publish\WorldBackup.pdb
+D:\repos\WorldBackup\bin\Release\net8.0\publish\Microsoft.Win32.SystemEvents.dll
+D:\repos\WorldBackup\bin\Release\net8.0\publish\System.Drawing.Common.dll
+D:\repos\WorldBackup\bin\Release\net8.0\publish\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll

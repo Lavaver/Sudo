@@ -1,12 +1,18 @@
-﻿# WorldBackup | 一款控制台冷备份小工具
+﻿# X-IPA WorldBackup CLI+ | 一款控制台冷备份小工具
 
 原本想要做 GUI 的，但 GUI 的表现不好，况且我本身绝大多数项目都从事控制台，于是就有了这个项目
 
 > WorldBackup 不只是个存档备份工具，其实只要涉及冷备份的它都可以用，不一定限制在存档
 
+> 注：适用于 Windows Presentation Foundation 的 GUI 版已经做出来了，后续会按需制作安装程序
+
 ## 该软件包括如下组件/内容
 
 - LogConsole - 统一的可缩放日志模块
+- LogWriter - 面向 WorldBackup For Windows Presentation Foundation 的异步式现代后台日志记录模块
+
+> 注：LogConsole 和 LogWriter 是两个**不同的核心组件**。LogWriter 提供了对 Windows Presentation Foundation 的更现代日志体验
+
 - Backup Database（备份数据库） - 记录备份详情
 - Backup 与 FirstBackup 模块 - 提供完整的冷备份解决方案
 - Database Recovery（数据库恢复） - 从数据库记录中恢复指定的备份
@@ -74,19 +80,16 @@
 > ```bash
 > PS D:\repos\WorldBackup\bin\Release\net8.0> .\WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
 >```
->
 > Command（cmd）：
 >```bash
 > D:\repos\WorldBackup\bin\Release\net8.0> WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
 >```
 
-## 例外
+## 最近更新速报 | Release Version 5.0 
 
-- Minecraft: Bedrock Edition 备份功能在 Linux/Unix 不可用。因为此功能为 Windows 专属。其他功能均可用。
+> 本来想要这次更新一并把 Minecraft 服务器记录日志的做法（每个日志都被压缩到	`tar.gz` 格式的压缩包下，只有最新日志被单独拎出来），但考虑到一旦动底层代码不仅我写着费劲其他人用这代码二次开发骂街的后果所以就没安排上，所以就只能等时机成熟后再修改吧...
 
-## 最近更新速报 | Release Version 4.4
-
-- 修复 （可能的）运行时错误：在 LogConsole.cs 第 47 行未对其进行 `null` 检查
-- Sumere Module 的 `Upload` 与 `Delete` 方法新增 `PreAuthenticate` 与 `Buffer` 参数，用于让用户决定是否预先认证及设定缓冲区大小
-
-> 注：CD/DVD 及 DVD-RW/DVD+RW 的冷备份刻录功能最近正在画大饼筹备中，写成之后直接进入 5.0 大版本
+- 入口代码的命令行参数处理方式从 `if-else` 转为 `swich` 与 `case` 块这两大现代好文明（？
+- 修复了自从初版开始就保留至今的远古问题（）
+- 除了入口代码，其余代码都将进入 WorldBackup SharedProject 项目中作为核心代码套件供大家快速二次开发
+- WorldBackup 现已更名为 X-IPA WorldBackup CLI+
