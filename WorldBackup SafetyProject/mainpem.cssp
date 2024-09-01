@@ -1,0 +1,43 @@
+using System.Security.Cryptography;
+using System.Text;
+using com.Lavaver.WorldBackup.Core;
+
+namespace com.Lavaver.WorldBackup.Safety 
+{
+    public static void CheckPEM()
+    {
+        if (!File.Exists("Private.xml"))
+        {
+            CreatePEM();
+        }
+        else if (!File.Exists("Public.xml"))
+        {
+            CreatePEM();
+        }
+        else 
+        {
+            LogConsole.Log("PEM", "公私钥全部存在，无需重新生成！", ConsoleColor.Green);
+        }
+    }
+
+    static void CreatePEM()
+    {
+        try
+        {
+            RSACryptoServiceProvider RSA = new();
+            using (StreamWriter PrivateWriter = new("Private.xml")) 
+            {
+               PrivateWriter.WriteLine(RSA.ToXmlString(true));
+            }
+            using (StreamWriter PublicWriter = new("Public.xml")) 
+            {
+               PublicWriter.WriteLine(RSA.ToXmlString(false));
+            }
+            LogConsole.Log("PEM", "公私钥已生成！", ConsoleColor.Blue);
+        }
+        catch (Exception Ex)
+        {
+            LogConsole.Log("PEM", $"生成/重新生成公私钥时发生 {Ex.Message}", ConsoleColor.Red, true);
+        }
+    }
+}

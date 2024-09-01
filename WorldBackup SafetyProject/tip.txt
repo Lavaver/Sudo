@@ -1,0 +1,1 @@
+注：该文件夹不是一个独立的共享项目，此文件夹为 X-IPA WorldBackup CLI+ 与 WorldBackup SharedProject 一个或多个代码片段公用的安全核心代码。

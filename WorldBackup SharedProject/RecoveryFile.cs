@@ -104,7 +104,7 @@ namespace com.Lavaver.WorldBackup.Database
                                 }
                                 else
                                 {
-                                    LogConsole.Log("配置文件", "配置文件中未找到 source 元素。", ConsoleColor.Red);
+                                    LogConsole.Log("配置文件", "配置文件中未找到相应元素", ConsoleColor.Red);
                                 }
                                 break;
                             }
@@ -117,7 +117,7 @@ namespace com.Lavaver.WorldBackup.Database
                 }
                 catch (Exception ex)
                 {
-                    LogConsole.Log("备份数据库", $"读取数据库中存在的备份记录时出现问题：{ex.Message}", ConsoleColor.Red);
+                    LogConsole.Err($"{ex.Message}");
                 }
             }
 
