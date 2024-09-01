@@ -79,12 +79,12 @@
 > 如果你只需要上传，下面提供了典型的使用方法：
 >
 > Windows PowerShell：
-> ```bash
-> PS D:\repos\WorldBackup\bin\Release\net8.0> .\WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
+> ```shell
+> PS [当前路径]> .\WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
 >```
 > Command（cmd）：
->```bash
-> D:\repos\WorldBackup\bin\Release\net8.0> WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
+>```shell
+> [当前路径]> WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
 >```
 
 ## 最近更新速报 | Release Version 5.0 
