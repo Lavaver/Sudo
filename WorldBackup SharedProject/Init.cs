@@ -27,7 +27,7 @@ namespace com.Lavaver.WorldBackup
                 Backup.Pullup();
                 while (true)
                 {
-                    // 其他逻辑或保持主线程活动的代码
+                    
                 }
             }
             catch (Exception ex)

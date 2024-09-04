@@ -87,11 +87,7 @@
 > [当前路径]> WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
 >```
 
-## 最近更新速报 | Release Version 5.0 
+## 最近更新速报 | RL 5.1 （需自行编译）
 
-> 本来想要这次更新一并把 Minecraft 服务器记录日志的做法（每个日志都被压缩到	`tar.gz` 格式的压缩包下，只有最新日志被单独拎出来），但考虑到一旦动底层代码不仅我写着费劲其他人用这代码二次开发骂街的后果所以就没安排上，所以就只能等时机成熟后再修改吧...
-
-- 入口代码的命令行参数处理方式从 `if-else` 转为 `swich` 与 `case` 块这两大现代好文明（？
-- 修复了自从初版开始就保留至今的远古问题（）
-- 除了入口代码，其余代码都将进入 WorldBackup SharedProject 项目中作为核心代码套件供大家快速二次开发
-- WorldBackup 现已更名为 X-IPA WorldBackup CLI+
+- 将备份数据库存储位置放入到 `com.Lavaver.WorldBackup.Database.GlobalClass` 类中便于后续调用
+> 主要原因还是解耦...毕竟这项目这么长时间史山代码也写了这么多，针对于数据库一类的 `string` 也重复写了多次，后续也会尝试将一些关于数据库一类的常量和部分变量放到这里，并且由于这项目后续大部分时间需要在学校直接写，未来版本**很有可能需要你自行编译，RL 版的后续质量也因此难以保障（或许下周可以恢复正常更新进度）**。如果出现编译失败或者程序出现问题时还请 [提交 Issues](https://github.com/Lavaver/WorldBackup/issues) ，非常感谢！

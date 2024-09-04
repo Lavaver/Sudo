@@ -18,7 +18,7 @@ namespace com.Lavaver.WorldBackup
         private static int selectedIndex = 0; // 声明 selectedIndex 作为类的私有静态变量
         public static void Run()
         {
-            string xmlFilePath = "备份数据库.xml";
+            string xmlFilePath = "Backup_DataBase.xml";
             string configFilePath = "WorldBackupConfig.xml";
 
             if (!File.Exists(xmlFilePath))

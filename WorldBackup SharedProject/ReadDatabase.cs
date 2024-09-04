@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Xml.Linq;
 using com.Lavaver.WorldBackup.Core;
+using com.Lavaver.WorldBackup.Database;
 
 namespace com.Lavaver.WorldBackup
 {
@@ -17,9 +18,8 @@ namespace com.Lavaver.WorldBackup
 
         private static void Read()
         {
-            string xmlFilePath = "备份数据库.xml";
 
-            if (!File.Exists(xmlFilePath))
+            if (!File.Exists(GlobalClass.GlobalDatabaseLocation))
             {
                 LogConsole.Log("备份数据库", "未找到备份数据库文件。请先正常运行程序以自动备份并生成数据库信息后再试。", ConsoleColor.Red);
                 return;
@@ -28,7 +28,7 @@ namespace com.Lavaver.WorldBackup
             try
             {
                 // 加载 XML 文件
-                XDocument doc = XDocument.Load(xmlFilePath);
+                XDocument doc = XDocument.Load(GlobalClass.GlobalDatabaseLocation);
 
                 if (doc.Root == null || doc.Root.Elements("Backup").Count() == 0)
                 {

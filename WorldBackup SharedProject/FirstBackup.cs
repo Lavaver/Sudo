@@ -1,4 +1,5 @@
 ﻿using com.Lavaver.WorldBackup.Core;
+using com.Lavaver.WorldBackup.Database;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -8,7 +9,6 @@ namespace com.Lavaver.WorldBackup
 {
     public class FirstBackup
     {
-        private const string BackupDatabaseFile = "备份数据库.xml";
         private const string ConfigFile = "WorldBackupConfig.xml";
 
         public static void Pullup()
@@ -27,11 +27,11 @@ namespace com.Lavaver.WorldBackup
 
         private static void CheckAndCreateBackupDatabase()
         {
-            if (!File.Exists(BackupDatabaseFile))
+            if (!File.Exists(GlobalClass.GlobalDatabaseLocation))
             {
                 // 创建一个新的 XML 文档结构
                 var newDoc = new XDocument(new XElement("Backups"));
-                newDoc.Save(BackupDatabaseFile);
+                newDoc.Save(GlobalClass.GlobalDatabaseLocation);
             }
         }
 
@@ -146,7 +146,7 @@ namespace com.Lavaver.WorldBackup
         {
             var backupTime = NTPC.Run();
 
-            var doc = XDocument.Load(BackupDatabaseFile);
+            var doc = XDocument.Load(GlobalClass.GlobalDatabaseLocation);
             var root = doc.Element("Backups");
 
             var newBackupElement = new XElement("Backup",
@@ -156,7 +156,7 @@ namespace com.Lavaver.WorldBackup
             );
 
             root.Add(newBackupElement);
-            doc.Save(BackupDatabaseFile);
+            doc.Save(GlobalClass.GlobalDatabaseLocation);
         }
     }
 }
