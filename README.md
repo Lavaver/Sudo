@@ -38,9 +38,13 @@
 
 `-database` - 读取备份数据库的所有数据，并以表格形式可视化显示在终端（其中最新备份会特别标识且置顶显示）
 
-`-deldatabase` - 删除整个备份数据库，但不删除整个备份文件（及其子文件夹）。这可能对于清理历史较久的记录有效果，但恢复这些备份你需要手动复制并替换文件
+~~`-deldatabase` - 删除整个备份数据库，但不删除整个备份文件（及其子文件夹）。这可能对于清理历史较久的记录有效果，但恢复这些备份你需要手动复制并替换文件~~
 
-`-deldata` - 选择备份并删除选中备份项
+~~`-deldata` - 选择备份并删除选中备份项~~
+
+> 原 `-deldatabase` 与 `-deldata` 参数已在 RL 5.2 版本中**完全弃用**。取而代之的是新式的 `-del <data/database>` 参数。
+
+`-del <data/database>` 针对于 RL 5.2 版本之后的新式删除备份文件或数据库的集合参数
 
 `-recovery` - 选择备份并恢复到配置设定的来源位置
 
@@ -87,7 +91,8 @@
 > [当前路径]> WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
 >```
 
-## 最近更新速报 | RL 5.1 （需自行编译）
+## 最近更新速报 | RL 5.2 （需自行编译）
 
-- 将备份数据库存储位置放入到 `com.Lavaver.WorldBackup.Database.GlobalClass` 类中便于后续调用
-> 主要原因还是解耦...毕竟这项目这么长时间史山代码也写了这么多，针对于数据库一类的 `string` 也重复写了多次，后续也会尝试将一些关于数据库一类的常量和部分变量放到这里，并且由于这项目后续大部分时间需要在学校直接写，未来版本**很有可能需要你自行编译，RL 版的后续质量也因此难以保障（或许下周可以恢复正常更新进度）**。如果出现编译失败或者程序出现问题时还请 [提交 Issues](https://github.com/Lavaver/WorldBackup/issues) ，非常感谢！
+- `com.Lavaver.WorldBackup.Database.GlobalClass` 类名更改为 `com.Lavaver.WorldBackup.Global.GlobalString`
+- 完全替换了全部程序的冗余配置文件位置以及数据库位置的常量
+- `MainProgram.cs` 中针对于 `-deldata` 与 `-deldatabase` 这两个参数进行整合成新的 `-del <data/database>` 参数，提高紧凑性

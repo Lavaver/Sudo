@@ -1,4 +1,5 @@
 ﻿using com.Lavaver.WorldBackup.Core;
+using com.Lavaver.WorldBackup.Global;
 using System;
 using System.IO;
 using System.Text;
@@ -14,17 +15,15 @@ namespace com.Lavaver.WorldBackup
 
         public static void Run()
         {
-            string configFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "WorldBackupConfig.xml");
-
             try
             {
-                if (File.Exists(configFilePath)) // 检查配置文件是否存在
+                if (File.Exists(GlobalString.SoftwareConfigLocation)) // 检查配置文件是否存在
                 {
-                    ReadConfigFile(configFilePath);
+                    ReadConfigFile(GlobalString.SoftwareConfigLocation);
                 }
                 else
                 {
-                    CreateConfigFile(configFilePath);
+                    CreateConfigFile(GlobalString.SoftwareConfigLocation);
                 }
             }
             catch (Exception ex)

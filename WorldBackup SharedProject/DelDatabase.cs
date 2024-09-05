@@ -1,4 +1,5 @@
 ﻿using com.Lavaver.WorldBackup.Core;
+using com.Lavaver.WorldBackup.Global;
 using System.Xml.Linq;
 
 namespace com.Lavaver.WorldBackup.Database
@@ -7,9 +8,9 @@ namespace com.Lavaver.WorldBackup.Database
     {
         public static void DelFile()
         {
-            if (File.Exists(GlobalClass.GlobalDatabaseLocation))
+            if (File.Exists(GlobalString.DatabaseLocation))
             {
-                File.Delete(GlobalClass.GlobalDatabaseLocation);
+                File.Delete(GlobalString.DatabaseLocation);
                 LogConsole.Log("备份数据库", "已删除数据库文件", ConsoleColor.Red);
             }
             else
@@ -21,7 +22,7 @@ namespace com.Lavaver.WorldBackup.Database
         
         public static void DelData()
         {
-            if (!File.Exists(GlobalClass.GlobalDatabaseLocation))
+            if (!File.Exists(GlobalString.DatabaseLocation))
             {
                 LogConsole.Log("备份数据库", "未找到备份数据库文件。请先正常运行程序以自动备份并生成数据库信息后再试。", ConsoleColor.Red);
                 return;
@@ -30,7 +31,7 @@ namespace com.Lavaver.WorldBackup.Database
             try
             {
                 // 加载 XML 文件
-                XDocument doc = XDocument.Load(GlobalClass.GlobalDatabaseLocation);
+                XDocument doc = XDocument.Load(GlobalString.DatabaseLocation);
 
                 if (doc.Root == null || doc.Root.Elements("Backup").Count() == 0)
                 {

@@ -39,14 +39,11 @@ namespace com.Lavaver.WorldBackup
                 case "-database":
                     ReadDatabase.Run();
                     break;
-                case "-deldatabase":
-                    DelDatabase.DelFile();
-                    break;
                 case "-clear":
                     Compression_and_Cleanup.Run();
                     break;
-                case "-deldata":
-                    DelDatabase.DelData();
+                case "-del":
+                    HandleDeleteArgs(args);
                     break;
                 case "-recovery":
                     RecoveryFile.RestoreData();
@@ -62,6 +59,28 @@ namespace com.Lavaver.WorldBackup
                     break;
                 default:
                     LogConsole.Log("Init", "未识别的命令行参数", ConsoleColor.Red);
+                    break;
+            }
+        }
+
+        private static void HandleDeleteArgs(string[] args) 
+        {
+            if (args.Length < 1) 
+            {
+                LogConsole.Log("Init", "用法：YourApp.exe -del <data/database>", ConsoleColor.Yellow);
+                return;
+            }
+
+            switch (args[1]) 
+            {
+                case "data":
+                    DelDatabase.DelData();
+                    break;
+                case "database":
+                    DelDatabase.DelFile();
+                    break;
+                default:
+                    LogConsole.Log("Init", "不正确的操作模式", ConsoleColor.Red);
                     break;
             }
         }

@@ -1,4 +1,5 @@
 ﻿using com.Lavaver.WorldBackup.Core;
+using com.Lavaver.WorldBackup.Global;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,11 +45,9 @@ namespace com.Lavaver.WorldBackup
 
         private static void HandleChoice(string elementName)
         {
-            string configFilePath = "WorldBackupConfig.xml";
-
             try
             {
-                XDocument doc = XDocument.Load(configFilePath);
+                XDocument doc = XDocument.Load(GlobalString.SoftwareConfigLocation);
                 XElement element = doc.Root.Element(elementName);
 
                 if (element != null)
@@ -60,7 +59,7 @@ namespace com.Lavaver.WorldBackup
                     if (!string.IsNullOrEmpty(newPath))
                     {
                         element.Value = newPath;
-                        doc.Save(configFilePath);
+                        doc.Save(GlobalString.SoftwareConfigLocation);
                         Console.WriteLine("配置已更新。");
                     }
                     else

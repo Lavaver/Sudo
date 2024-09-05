@@ -1,5 +1,6 @@
 ﻿using com.Lavaver.WorldBackup.Core;
 using com.Lavaver.WorldBackup.Database;
+using com.Lavaver.WorldBackup.Global;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -9,8 +10,6 @@ namespace com.Lavaver.WorldBackup
 {
     public class FirstBackup
     {
-        private const string ConfigFile = "WorldBackupConfig.xml";
-
         public static void Pullup()
         {
             try
@@ -27,23 +26,23 @@ namespace com.Lavaver.WorldBackup
 
         private static void CheckAndCreateBackupDatabase()
         {
-            if (!File.Exists(GlobalClass.GlobalDatabaseLocation))
+            if (!File.Exists(GlobalString.DatabaseLocation))
             {
                 // 创建一个新的 XML 文档结构
                 var newDoc = new XDocument(new XElement("Backups"));
-                newDoc.Save(GlobalClass.GlobalDatabaseLocation);
+                newDoc.Save(GlobalString.DatabaseLocation);
             }
         }
 
         private static (string source, string backupto) ReadConfig()
         {
-            if (!File.Exists(ConfigFile))
+            if (!File.Exists(GlobalString.SoftwareConfigLocation))
             {
                 LogConsole.Log("WorldBackup Backup", "配置不存在", ConsoleColor.Red);
                 Environment.Exit(1);
             }
 
-            var configXml = XDocument.Load(ConfigFile);
+            var configXml = XDocument.Load(GlobalString.SoftwareConfigLocation);
             var source = configXml.Root.Element("source")?.Value;
             var backupto = configXml.Root.Element("backupto")?.Value;
 
@@ -146,7 +145,7 @@ namespace com.Lavaver.WorldBackup
         {
             var backupTime = NTPC.Run();
 
-            var doc = XDocument.Load(GlobalClass.GlobalDatabaseLocation);
+            var doc = XDocument.Load(GlobalString.DatabaseLocation);
             var root = doc.Element("Backups");
 
             var newBackupElement = new XElement("Backup",
@@ -156,7 +155,7 @@ namespace com.Lavaver.WorldBackup
             );
 
             root.Add(newBackupElement);
-            doc.Save(GlobalClass.GlobalDatabaseLocation);
+            doc.Save(GlobalString.DatabaseLocation);
         }
     }
 }
