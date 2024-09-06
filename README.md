@@ -66,6 +66,10 @@
 - 日志：这个就不用我多说了懂得都懂，它很重要
 - 备份数据库：Git 的精华，使用数据库可快速存储、查阅、删除及恢复备份，保证一致性的同时也可追溯备份日期
 
+## 特别感谢
+
+- Octokit - 辅助支持了软件版本更新检查功能（也是目前唯一一个使用的第三方包）
+
 ## 附录：Sumeru Module 操作参数关系表
 
 | 参数 | 在 Upload 的可用性 | 在 Download 的可用性 | 在 Delete 的可用性 | 在 NewFolder 的可用性 | 在 List 的可用性 |
@@ -91,8 +95,15 @@
 > [当前路径]> WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
 >```
 
-## 最近更新速报 | RL 5.2 （需自行编译）
+## 关于之后本项目的代码维护方向
 
-- `com.Lavaver.WorldBackup.Database.GlobalClass` 类名更改为 `com.Lavaver.WorldBackup.Global.GlobalString`
-- 完全替换了全部程序的冗余配置文件位置以及数据库位置的常量
-- `MainProgram.cs` 中针对于 `-deldata` 与 `-deldatabase` 这两个参数进行整合成新的 `-del <data/database>` 参数，提高紧凑性
+这个项目在大多数人看来已经完善到不能再完善的地步了，但因为这个项目在我眼里拥有特殊意义，所以此后将继续（保持非连续性）维护。
+
+但由于学业原因可能更新的会非常吃力，不过这从某种角度上说也一定程度上帮我分担了部分艰巨任务
+
+> 但学校机房电脑仍用着上古的 Windows 7 ，并且像 Git 一类的版本控制软件（以及一大堆开发环境）也没有安装（不过也不是坏到没边，至少还有 VS 2019 可以用（不过开发负载只有 C++ 我是不能忍的（PS：我只在 C# 可以发挥一席之地）），各种组件处于东缺西缺的状态，网速还慢的一批（甚至连基本的 [VS Code Web 版](https://vscode.dev) 都加载不出来...即使带了电脑也要面对很多现实问题
+
+## 最近更新速报 | RL 5.3
+
+- 包括了一些增量改进
+- 新增 软件更新检查功能（特别感谢 Octokit 对该模块的支持）

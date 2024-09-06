@@ -13,3 +13,7 @@ D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.pdb
 D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.genruntimeconfig.cache
 D:\repos\WorldBackup\obj\Release\net8.0\ref\WorldBackup.dll
 D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.sourcelink.json
+D:\repos\WorldBackup\bin\Release\net8.0\LICENSE
+D:\repos\WorldBackup\bin\Release\net8.0\Octokit.dll
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup.csproj.AssemblyReference.cache
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBac.35246194.Up2Date

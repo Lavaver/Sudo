@@ -94,7 +94,7 @@ namespace com.Lavaver.WorldBackup.Database
                                 DeleteDirectoryRecursively($"{backups[selectedIndex].Path}");
                                 LogConsole.Log("备份数据库", $"{backups[selectedIndex].Path} => Deleted（删除）", ConsoleColor.Red);
                                 backups[selectedIndex].Element.Remove();
-                                doc.Save(xmlFilePath);
+                                doc.Save(GlobalString.DatabaseLocation);
                                 LogConsole.Log("备份数据库", "删除成功", ConsoleColor.Green);
 
                                  break;
@@ -115,6 +115,32 @@ namespace com.Lavaver.WorldBackup.Database
             catch (Exception ex)
             {
                 LogConsole.Log("备份数据库", $"读取数据库中存在的备份记录时出现问题：{ex.Message}", ConsoleColor.Red);
+            }
+        }
+
+        public static void DelConfig()
+        {
+            if (File.Exists(GlobalString.SoftwareConfigLocation))
+            {
+                LogConsole.Log("软件配置", "警告：删除软件配置文件将会导致后续运行时需要重新配置，仅在迫不得已时使用。我们推荐你使用 -rebuildconfig 参数重新构建一个新的配置文件以便你重新开始。继续？[Y/N]", ConsoleColor.Yellow);
+                string? input = Console.ReadLine();
+                if (input == "y" || input == "Y")
+                {
+                    File.Delete(GlobalString.SoftwareConfigLocation);
+                    LogConsole.Log("软件配置", "已删除软件配置文件", ConsoleColor.Red);
+                }
+                else if (input == "n" || input == "N")
+                {
+                    LogConsole.Log("软件配置", "取消删除软件配置文件", ConsoleColor.Yellow);
+                }
+                else
+                {
+                    LogConsole.Log("软件配置", "输入错误，取消删除软件配置文件", ConsoleColor.Yellow);
+                }
+            }
+            else
+            {
+                LogConsole.Log("软件配置", "软件配置文件不存在", ConsoleColor.Yellow);
             }
         }
 

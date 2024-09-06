@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lavaver")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("5.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("5.0.0+529fa6c45c764b0a22206067cedbc82d18917440")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("5.0.0+cdc1d8cc8921f9900289801cf368bd533c431ae5")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorldBackup")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorldBackup")]
 [assembly: System.Reflection.AssemblyVersionAttribute("5.0.0")]

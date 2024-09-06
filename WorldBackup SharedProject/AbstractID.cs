@@ -1,4 +1,4 @@
-﻿sing System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -6,16 +6,18 @@ using System.Text;
 namespace com.Lavaver.WorldBackup.Core
 {
     /// <summary>
-    /// 摘要 ID 生成器。该生成器生成 18 位摘要 ID ，用于追溯日志文件。该生成器不具备伪造中国大陆境内二代身份证号码的用途。
+    /// 由于考虑到有悖法律法规的要求，此处代码将弃用
     /// </summary>
+    [Obsolete]
     internal class AbstractID
     {
         private static readonly Random random = new Random();
 
         /// <summary>
-        /// 摘要 ID 生成
+        /// 由于考虑到有悖法律法规的要求，此处代码将弃用
         /// </summary>
         /// <returns>18 位摘要 ID</returns>
+        [Obsolete]
         public static string GenerateRandomID()
         {
             string scanCode = GenerateScanCode();

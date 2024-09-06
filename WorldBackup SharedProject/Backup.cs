@@ -16,7 +16,7 @@ namespace com.Lavaver.WorldBackup
             timer.AutoReset = true;
             timer.Enabled = true;
             Console.CancelKeyPress += OnExit;
-            LogConsole.Log("WorldBackup Backup", "按下 Ctrl + C 离开程序", ConsoleColor.Blue);
+            LogConsole.Log("WorldBackup Backup", "后台备份模块已启动，每隔 15 分钟自动备份一次。如需停止，请按下 Ctrl + C 离开程序", ConsoleColor.Blue);
         }
 
         private static void OnTimedEvent(object source, ElapsedEventArgs e)

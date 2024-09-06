@@ -3,16 +3,17 @@ using System.Reflection;
 using com.Lavaver.WorldBackup.Sumeru;
 using com.Lavaver.WorldBackup.Core;
 using com.Lavaver.WorldBackup.Database;
+using com.Lavaver.WorldBackup.Rebuild;
+using com.Lavaver.WorldBackup.Global;
 
 namespace com.Lavaver.WorldBackup
 {
     /// <summary>
-    /// 如果你要说我为什么不创建文件夹做分类？我只想对你说你太天真了，首先这个项目基本没什么人看，其次是项目初期本身就是不用文件夹整理有历史包袱，最后是这个程序有非常多代码文件都依靠底层核心（例如 LogConsole）支持，动一个项目编译不过去<br/>
-    /// 最重要的是根据我的习惯一旦新建文件夹把代码放进去那必须要下意识遵循 Java 包名规则，如果有爱好者想用新版代码就必须要把那些组件命名空间全部改为包名非常麻烦
+    /// 重灾区（确信）
     /// </summary>
     internal class MainProgram
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var entryAssembly = Assembly.GetEntryAssembly();
             var version = entryAssembly?.GetName().Version ?? new Version(0, 0, 0, 0);
@@ -28,7 +29,7 @@ namespace com.Lavaver.WorldBackup
             }
             else
             {
-                Init.Run();
+                await Init.Run();
             }
         }
 
@@ -57,6 +58,18 @@ namespace com.Lavaver.WorldBackup
                 case "-bedrock":
                     Bedrock.Backup.Run();
                     break;
+                case "-rebuildconfig":
+                    RebuildConfig.Run();
+                    break;
+                case "-license":
+                    var entryAssembly = Assembly.GetEntryAssembly();
+                    var version = entryAssembly?.GetName().Version ?? new Version(0, 0, 0, 0);
+                    string fileContent = File.ReadAllText(GlobalString.LICENSE);
+                    LogConsole.Log("MIT License", fileContent, ConsoleColor.Green);
+                    LogConsole.Log("MIT License", "------------------------------", ConsoleColor.Green);
+                    LogConsole.Log("MIT License", $"WorldBackup CLI+ 由 Lavaver 授权给你的计算机 {Environment.MachineName} 使用，任何人可在 MIT 许可证下使用本软件、修改、分发、再授权，但必须保留原作者信息和许可证信息。", ConsoleColor.Green);
+                    LogConsole.Log("MIT License", $"软件发行版（main 分支，主要更新通道） | RL (Release Version) {version}", ConsoleColor.Green);
+                    break;
                 default:
                     LogConsole.Log("Init", "未识别的命令行参数", ConsoleColor.Red);
                     break;
@@ -65,9 +78,9 @@ namespace com.Lavaver.WorldBackup
 
         private static void HandleDeleteArgs(string[] args) 
         {
-            if (args.Length < 1) 
+            if (args.Length < 2) 
             {
-                LogConsole.Log("Init", "用法：YourApp.exe -del <data/database>", ConsoleColor.Yellow);
+                LogConsole.Log("Init", $"用法：{1} -del <data/database/config>", ConsoleColor.Yellow);
                 return;
             }
 
@@ -79,6 +92,9 @@ namespace com.Lavaver.WorldBackup
                 case "database":
                     DelDatabase.DelFile();
                     break;
+                case "config":
+                    DelDatabase.DelConfig();
+                    break;
                 default:
                     LogConsole.Log("Init", "不正确的操作模式", ConsoleColor.Red);
                     break;
@@ -89,7 +105,7 @@ namespace com.Lavaver.WorldBackup
         {
             if (args.Length < 6)
             {
-                LogConsole.Log("Init", "用法: YourApp.exe -WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] [<PreAuthenticate:true/false>] [<Buffer>] <Upload/Download/Delete/NewFolder>", ConsoleColor.Yellow);
+                LogConsole.Log("Init", $"用法: {1} -WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] [<PreAuthenticate:true/false>] [<Buffer>] <Upload/Download/Delete/NewFolder>", ConsoleColor.Yellow);
                 return;
             }
 

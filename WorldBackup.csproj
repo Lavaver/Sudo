@@ -36,6 +36,7 @@
     <None Update="LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="README.md">
       <Pack>True</Pack>
@@ -44,5 +45,13 @@
   </ItemGroup>
 
   <Import Project="WorldBackup SharedProject\WorldBackup SharedProject.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <Compile Remove="D:\repos\WorldBackup\WorldBackup SharedProject\Network Time Protocol Calibrators %28NTP-C%29.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Octokit" Version="13.0.1" />
+  </ItemGroup>
 
 </Project>

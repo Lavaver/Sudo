@@ -14,6 +14,7 @@ namespace com.Lavaver.WorldBackup
         {
             try
             {
+                LogConsole.Log("WorldBackup Backup", "开始备份（此过程可能需要较长时间）", ConsoleColor.Green);
                 CheckAndCreateBackupDatabase();
                 var (source, backupto) = ReadConfig();
                 PerformBackup(source, backupto);

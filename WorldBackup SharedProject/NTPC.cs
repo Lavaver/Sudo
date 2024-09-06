@@ -61,7 +61,7 @@ namespace com.Lavaver.WorldBackup
                     // NTP时间从1900年1月1日开始
                     DateTime networkDateTime = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds((long)milliseconds);
 
-                    LogConsole.Log("NTP-C Info", $"已成功地获取时间为 {networkDateTime.ToLocalTime}", ConsoleColor.Blue);
+                    LogConsole.Log("NTP-C Info", "已成功地获取时间", ConsoleColor.Blue);
 
                     return networkDateTime.ToLocalTime();
                 }
