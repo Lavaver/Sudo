@@ -34,13 +34,10 @@ namespace com.Lavaver.WorldBackup.Global
 
             if (majorMinorComparison < 0)
             {
-                LogConsole.Info($"有新版本可用（{latestGitHubVersion}）！你应该至 https://github.com/{owner}/{repo}/releases 下载更新 WorldBackup 到最新版本以获得最新的功能和 bug 修复");
+                LogConsole.Info($"有新版本可用（{latestGitHubVersion}）！你应该至 https://github.com/{owner}/{repo}/releases/latest 下载更新 WorldBackup 到最新版本以获得最新的功能和 bug 修复");
+                LogConsole.Info($"当前软件版本：{localVersion}");
             }
-            else if (majorMinorComparison > 0)
-            {
-                LogConsole.Info("当前版本比最新 Release 版本新。");
-            }
-            else
+            else if (majorMinorComparison >= 0)
             {
                 LogConsole.Info("当前版本是最新的");
             }

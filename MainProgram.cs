@@ -25,7 +25,7 @@ namespace com.Lavaver.WorldBackup
 
             if (args.Length > 0)
             {
-                HandleCommandLineArgs(args);
+                await HandleCommandLineArgs(args);
             }
             else
             {
@@ -33,7 +33,7 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        private static void HandleCommandLineArgs(string[] args)
+        private static async Task HandleCommandLineArgs(string[] args)
         {
             switch (args[0])
             {
@@ -68,7 +68,10 @@ namespace com.Lavaver.WorldBackup
                     LogConsole.Log("MIT License", fileContent, ConsoleColor.Green);
                     LogConsole.Log("MIT License", "------------------------------", ConsoleColor.Green);
                     LogConsole.Log("MIT License", $"WorldBackup CLI+ 由 Lavaver 授权给你的计算机 {Environment.MachineName} 使用，任何人可在 MIT 许可证下使用本软件、修改、分发、再授权，但必须保留原作者信息和许可证信息。", ConsoleColor.Green);
-                    LogConsole.Log("MIT License", $"软件发行版（main 分支，主要更新通道） | RL (Release Version) {version}", ConsoleColor.Green);
+                    LogConsole.Log("MIT License", $"软件发行版（main 分支，主要更新通道） | 稳定版 {version} | 最后一次构建日期：2024/09/08 | 当前运行时版本 {Environment.Version}", ConsoleColor.Green);
+                    break;
+                case "-update":
+                    await CheckUpdate.Run();
                     break;
                 default:
                     LogConsole.Log("Init", "未识别的命令行参数", ConsoleColor.Red);
