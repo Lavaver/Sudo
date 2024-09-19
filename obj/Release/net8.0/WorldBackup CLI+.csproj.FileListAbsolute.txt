@@ -1,0 +1,19 @@
+D:\repos\WorldBackup\bin\Release\net8.0\WorldBackup CLI+.exe
+D:\repos\WorldBackup\bin\Release\net8.0\LICENSE
+D:\repos\WorldBackup\bin\Release\net8.0\WorldBackup CLI+.deps.json
+D:\repos\WorldBackup\bin\Release\net8.0\WorldBackup CLI+.runtimeconfig.json
+D:\repos\WorldBackup\bin\Release\net8.0\WorldBackup CLI+.dll
+D:\repos\WorldBackup\bin\Release\net8.0\WorldBackup CLI+.pdb
+D:\repos\WorldBackup\bin\Release\net8.0\Octokit.dll
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup CLI+.csproj.AssemblyReference.cache
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup CLI+.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup CLI+.AssemblyInfoInputs.cache
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup CLI+.AssemblyInfo.cs
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup CLI+.csproj.CoreCompileInputs.cache
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup CLI+.sourcelink.json
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBac.9BADA311.Up2Date
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup CLI+.dll
+D:\repos\WorldBackup\obj\Release\net8.0\refint\WorldBackup CLI+.dll
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup CLI+.pdb
+D:\repos\WorldBackup\obj\Release\net8.0\WorldBackup CLI+.genruntimeconfig.cache
+D:\repos\WorldBackup\obj\Release\net8.0\ref\WorldBackup CLI+.dll

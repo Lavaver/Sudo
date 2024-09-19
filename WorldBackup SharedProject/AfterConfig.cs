@@ -19,6 +19,9 @@ namespace com.Lavaver.WorldBackup
                 Console.WriteLine("1. 来源文件夹");
                 Console.WriteLine("2. 备份到");
                 Console.WriteLine("3. NTP 服务器");
+                Console.WriteLine("4. WebDAV 用户名");
+                Console.WriteLine("5. WebDAV 密码");
+                Console.WriteLine("6. WebDAV 服务器地址");
                 Console.WriteLine("0. 退出");
 
                 string choice = Console.ReadLine();
@@ -33,6 +36,15 @@ namespace com.Lavaver.WorldBackup
                         break;
                     case "3":
                         HandleChoice("NTP-Server");
+                        break;
+                    case "4":
+                        HandleChoice("DAVUserName");
+                        break;
+                    case "5":
+                        HandleChoice("DAVPassword");
+                        break;
+                    case "6":
+                        HandleChoice("DAVHost");
                         break;
                     case "0":
                         return;

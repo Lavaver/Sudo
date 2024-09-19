@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using com.Lavaver.WorldBackup.Sumeru;
+using com.Lavaver.WorldBackup.async;
 using com.Lavaver.WorldBackup.Core;
 using com.Lavaver.WorldBackup.Database;
 using com.Lavaver.WorldBackup.Rebuild;
@@ -16,8 +16,8 @@ namespace com.Lavaver.WorldBackup
         static async Task Main(string[] args)
         {
             var entryAssembly = Assembly.GetEntryAssembly();
-            var version = entryAssembly?.GetName().Version ?? new Version(0, 0, 0, 0);
-            Console.Title = $"WorldBackup CLI+ | Version {version}";
+            var version = entryAssembly?.GetName().Version ?? new Version(0, 0);
+            Console.Title = $"WorldBackup CLI+ v{version}";
 
             LogConsole.Initialize();
 
@@ -98,44 +98,43 @@ namespace com.Lavaver.WorldBackup
                 case "config":
                     DelDatabase.DelConfig();
                     break;
+                case "log":
+                    DelDatabase.DelLog();
+                    break;
                 default:
                     LogConsole.Log("Init", "不正确的操作模式", ConsoleColor.Red);
                     break;
             }
         }
 
-        private static void HandleWebDAVArgs(string[] args)
+        private static async void HandleWebDAVArgs(string[] args)
         {
             if (args.Length < 6)
             {
-                LogConsole.Log("Init", $"用法: {1} -WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] [<PreAuthenticate:true/false>] [<Buffer>] <Upload/Download/Delete/NewFolder>", ConsoleColor.Yellow);
+                LogConsole.Log("Init", $"用法: {1} -WebDAV <SourceFilePath> [<DestinationPath>] [<true/false>] <Upload/Download/Delete/NewFolder>", ConsoleColor.Yellow);
                 return;
             }
 
-            string address = args[1];
-            string account = args[2];
-            string password = args[3];
-            string sourceFilePath = args[4];
-            string destinationPath = args.Length > 5 ? args[5] : "/"; // 默认为根路径
-            bool preAuthenticate = Convert.ToBoolean(args[6]);
-            long buffer = Convert.ToInt64(args[7]);
+            string sourceFilePath = args[1];
+            string destinationPath = args.Length > 5 ? args[2] : "/"; // 默认为根路径
+            long buffer = Convert.ToInt64(args[4]);
 
             switch (args[8])
             {
                 case "Upload":
-                    AkashaTerminal.Upload(address, account, password, sourceFilePath, destinationPath, preAuthenticate, buffer);
+                    await WebDAV.UploadAsync(sourceFilePath, destinationPath);
                     break;
                 case "Download":
-                    AkashaTerminal.Download(address, account, password, destinationPath, sourceFilePath);
+                    await WebDAV.DownloadAsync(destinationPath);
                     break;
                 case "Delete":
-                    AkashaTerminal.Delete(address, account, password, destinationPath, preAuthenticate);
+                    await WebDAV.DeleteAsync(destinationPath);
                     break;
                 case "NewFolder":
-                    AkashaTerminal.NewFolder(address, account, password, destinationPath);
+                    await WebDAV.NewFolderAsync(destinationPath);
                     break;
                 case "List":
-                    AkashaTerminal.List(address, account, password);
+                    await WebDAV.ListAsync();
                     break;
                 default:
                     LogConsole.Log("Init", "不正确的操作模式", ConsoleColor.Red);

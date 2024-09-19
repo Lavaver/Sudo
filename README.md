@@ -4,9 +4,6 @@
 
 > WorldBackup 不只是个存档备份工具，其实只要涉及冷备份的它都可以用，不一定限制在存档
 
-> 注1：该项目有不同版本的分支。**标准发行版（`main` 分支）** 适用于公众使用，一般推荐非特殊需求用户使用该版本（同时，**该版本也是唯一并不需要自己手动编译的版本，每个正式发行在该分支的版本会同步发布一个已经编译好的文件在 [Releases 页面](https://github.com/Lavaver/WorldBackup/releases)**）。**`Safety-Branch` 分支**适用于对安全需求较高的场景，这个分支的代码**针对特殊需求增加了安全代码**。
-
-> 注2：`Xinhua-SE` 分支**在这学期结束之前不会开源在此处**。等放假后再选择性开源，但部分闭源代码该不放的还是不放（
 
 ## 该软件包括如下组件/内容
 
@@ -50,7 +47,11 @@
 
 `-config` - 进入配置页面并进行软件配置
 
-`-WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] [<PreAuthenticate:true/false>] [<Buffer>] <Upload/Download/Delete/NewFolder/List>` - 使用 Semeru Module 将文件上传到服务器。亦可进行下载、删除文件和创建文件夹操作。
+~~`-WebDAV <Address> <Account> <Password> <SourceFilePath> [<DestinationPath>] [<PreAuthenticate:true/false>] [<Buffer>] <Upload/Download/Delete/NewFolder/List>` - 使用 Semeru Module 将文件上传到服务器。亦可进行下载、删除文件和创建文件夹操作。~~
+
+> 旧版方法已弃用。请使用下方展示的新方法。
+
+`-WebDAV <SourceFilePath> [<DestinationPath>] <Upload/Download/Delete/NewFolder>` - 新版异步 WebDAV 操作体验，大刀阔斧的削减了繁琐的参数输入
 
 `-bedrock` - 备份基岩版全部存档（需要管理员权限）
 
@@ -74,26 +75,20 @@
 
 | 参数 | 在 Upload 的可用性 | 在 Download 的可用性 | 在 Delete 的可用性 | 在 NewFolder 的可用性 | 在 List 的可用性 |
 | --- | --- | --- | --- | --- | --- |
-| Address | 必须 | 必须 | 必须 | 必须 | 必须 |
-| Account | 必须 | 必须 | 必须 | 必须 | 必须 |
-| Password | 必须 | 必须 | 必须 | 必须 | 必须 |
 | SourceFilePath | 必须 | 必须（用于指代保存路径） | 无需 | 无需 | 无需 |
 | DestinationPath | 可选 | 必须 | 必须 | 必须 | 无需 |
-| PreAuthenticate | 必须 | 无需 | 必须 | 无需 | 无需 |
-| Buffer | 必须（`int`/`long`） | 无需 | 无需 | 无需 | 无需 |
 
 > 无需或可选的参数可以使用 `~` 指代忽略这个参数
 
-> 如果你只需要上传，下面提供了典型的使用方法：
->
-> Windows PowerShell：
-> ```shell
-> PS [当前路径]> .\WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
->```
-> Command（cmd）：
+> 针对于 RL 6.0 以前版本的用法：
 >```shell
 > [当前路径]> WorldBackup -WebDAV [Address] [Account] [Password] [SourceFile] [DestinationPath] [true/false] 4096 Upload
 >```
+> 针对于 RL 6.0 以后版本的用法：
+>```shell
+> [当前路径]> WorldBackup -WebDAV <SourceFilePath> [DestinationPath] Upload
+>```
+> 可以看到，在进行更新之后，原先的繁琐参数将大幅度缩减，将重要的用户名、密码与服务器地址迁移到配置文件中，以方便后续使用
 
 ## 关于之后本项目的代码维护方向
 
@@ -103,6 +98,15 @@
 
 > 但学校机房电脑仍用着上古的 Windows 7 ，并且像 Git 一类的版本控制软件（以及一大堆开发环境）也没有安装（不过也不是坏到没边，至少还有 VS 2019 可以用（不过开发负载只有 C++ 我是不能忍的（PS：我只在 C# 可以发挥一席之地）），各种组件处于东缺西缺的状态，网速还慢的一批（甚至连基本的 [VS Code Web 版](https://vscode.dev) 都加载不出来...即使带了电脑也要面对很多现实问题
 
-## 最近更新速报 | RL 5.4
+## 已过时类或方法
 
-- 新增 `-update` 参数，可以手动检测软件版本是否有可用更新
+| 所属类 | 方法名 | 即将/已弃用时间 | 警告 | 原因 |
+| --- | --- | --- | --- |
+| `AbstractID` | 全部 | 2024/9/11 | LAW00EF/8 | 可能的法律与伦理风险 |
+| `AkashaTerminal` | 全部 | 2024/10/01 | 0x2800FED/RW | 代码过时 + 非可等待性异步 |
+
+## 最近更新速报 | RL 6.0
+
+- 完全弃用 `com.Lavaver.WorldBackup.Sumeru` 命名空间下全部代码，取而代之的是新式的 `com.Lavaver.WorldBackup.async` 命名空间。
+
+> 鉴于本版本对于 WebDAV 模块影响很大（最显著改变是有相当一部分原本在控制台输入的参数迁移到了软件配置文件中），为了安全和便利性，请尽快更新。

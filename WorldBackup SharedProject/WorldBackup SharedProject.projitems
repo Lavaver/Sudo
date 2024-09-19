@@ -17,11 +17,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)CheckConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CheckUpdate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DelDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtHttpMethod.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FirstBackup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GlobalClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Init.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogConsole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NTPC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ReadConfig\Global.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ReadDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RebuildConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RecoveryFile.cs" />

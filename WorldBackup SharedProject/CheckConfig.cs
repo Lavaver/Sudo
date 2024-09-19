@@ -114,6 +114,18 @@ namespace com.Lavaver.WorldBackup
                 NTPServerNode.InnerText = DefaultNTPServerAddress;
                 configNode.AppendChild(NTPServerNode);
 
+                XmlElement DAVUploadUserNode = doc.CreateElement("DAVUserName");
+                DAVUploadUserNode.InnerText = GlobalString.ExampleDAVUsrname;
+                configNode.AppendChild(DAVUploadUserNode);
+
+                XmlElement DAVUploadPasswordNode = doc.CreateElement("DAVPassword");
+                DAVUploadPasswordNode.InnerText = GlobalString.ExampleDAVPassword;
+                configNode.AppendChild(DAVUploadPasswordNode);
+
+                XmlElement DAVUploadURLNode = doc.CreateElement("DAVHost");
+                DAVUploadURLNode.InnerText = GlobalString.ExampleDAVServer;
+                configNode.AppendChild(DAVUploadURLNode);
+
                 doc.Save(filePath);
 
                 LogConsole.Log($"WorldBackup CheckConfig Progress ({PID})", $"配置已生成。请使用 -config 修改你的配置。程序将退出以便配置生效", ConsoleColor.Blue);

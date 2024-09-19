@@ -144,6 +144,26 @@ namespace com.Lavaver.WorldBackup.Database
             }
         }
 
+        public static void DelLog()
+        {
+            LogConsole.Log("日志文件管理", "警告：虽然没什么人在日志目录下放重要文件，但为了以防万一，需要确认你真的要删除日志目录及其所有文件。继续？[Y/N]", ConsoleColor.Yellow);
+            string? input = Console.ReadLine();
+            if (input == "y" || input == "Y")
+            {
+                DeleteDirectoryRecursively(GlobalString.LogLocation);
+                LogConsole.Log("日志文件管理", "已删除日志目录及其所有文件", ConsoleColor.Red);
+            }
+            else if (input == "n" || input == "N")
+            {
+                LogConsole.Log("日志文件管理", "取消删除日志目录及其所有文件", ConsoleColor.Yellow);
+            }
+            else
+            {
+                LogConsole.Log("日志文件管理", "输入错误，取消删除日志目录及其所有文件", ConsoleColor.Yellow);
+            }
+        }
+       
+
         public static void DeleteDirectoryRecursively(string targetDir)
         {
             try

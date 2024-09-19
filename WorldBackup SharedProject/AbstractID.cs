@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Collections;
+using System.ComponentModel;
+using System.Reflection;
+using System.Runtime.Serialization;
+
 
 namespace com.Lavaver.WorldBackup.Core
 {
-    /// <summary>
-    /// 由于考虑到有悖法律法规的要求，此处代码将弃用
-    /// </summary>
-    [Obsolete]
     internal class AbstractID
     {
         private static readonly Random random = new Random();
 
-        /// <summary>
-        /// 由于考虑到有悖法律法规的要求，此处代码将弃用
-        /// </summary>
-        /// <returns>18 位摘要 ID</returns>
-        [Obsolete]
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("由于考虑到有悖法律法规的要求，此处代码将弃用。有关此代码及其关联的 DiagnosticId，请参阅随开源代码附带的 README 或软件内发行注记。", DiagnosticId = "LAW00EF/8")]
         public static string GenerateRandomID()
         {
             string scanCode = GenerateScanCode();
@@ -28,6 +27,8 @@ namespace com.Lavaver.WorldBackup.Core
             return scanCode + dateCode + hashCode + checkDigit;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("由于考虑到有悖法律法规的要求，此处代码将弃用。有关此代码及其关联的 DiagnosticId，请参阅随开源代码附带的 README 或软件内发行注记。", DiagnosticId = "LAW00EF/8")]
         private static string GenerateScanCode()
         {
             string systemVersion = GenerateRandomNumberString(6);
@@ -37,6 +38,8 @@ namespace com.Lavaver.WorldBackup.Core
             return systemVersion + kernelVersion + randomArray;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("由于考虑到有悖法律法规的要求，此处代码将弃用。有关此代码及其关联的 DiagnosticId，请参阅随开源代码附带的 README 或软件内发行注记。", DiagnosticId = "LAW00EF/8")]
         private static string GenerateDateCode()
         {
             DateTime now = DateTime.Now;
@@ -47,6 +50,8 @@ namespace com.Lavaver.WorldBackup.Core
             return year + month + day;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("由于考虑到有悖法律法规的要求，此处代码将弃用。有关此代码及其关联的 DiagnosticId，请参阅随开源代码附带的 README 或软件内发行注记。", DiagnosticId = "LAW00EF/8")]
         private static string GenerateHashCode(string input)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -57,6 +62,8 @@ namespace com.Lavaver.WorldBackup.Core
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("由于考虑到有悖法律法规的要求，此处代码将弃用。有关此代码及其关联的 DiagnosticId，请参阅随开源代码附带的 README 或软件内发行注记。", DiagnosticId = "LAW00EF/8")]
         private static string CalculateCheckDigit(string input)
         {
             int sum = 0;
@@ -75,6 +82,8 @@ namespace com.Lavaver.WorldBackup.Core
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("由于考虑到有悖法律法规的要求，此处代码将弃用。有关此代码及其关联的 DiagnosticId，请参阅随开源代码附带的 README 或软件内发行注记。", DiagnosticId = "LAW00EF/8")]
         private static string GenerateRandomNumberString(int length)
         {
             StringBuilder result = new StringBuilder(length);
