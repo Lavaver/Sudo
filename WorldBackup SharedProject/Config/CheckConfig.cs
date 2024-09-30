@@ -1,25 +1,29 @@
 ﻿using com.Lavaver.WorldBackup.Core;
 using com.Lavaver.WorldBackup.Global;
+using com.Lavaver.WorldBackup.Global.ReadConfig;
+using com.Lavaver.WorldBackup.Database.MySQL;
 using System;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace com.Lavaver.WorldBackup
 {
     internal class CheckConfig
     {
-        private const string DefaultSourceFolder = "默认备份来源文件夹";
-        private const string DefaultBackupToFolder = "默认备份到文件夹";
-        private const string DefaultNTPServerAddress = "time.windows.com";
-
         public static void Run()
         {
             try
             {
                 if (File.Exists(GlobalString.SoftwareConfigLocation)) // 检查配置文件是否存在
                 {
-                    ReadConfigFile(GlobalString.SoftwareConfigLocation);
+                    UserConfig.ReadConfigFile(GlobalString.SoftwareConfigLocation);
+                    if (SQLConfig.IsEnabled())
+                    {
+                        Auth.Test();
+                    }
+                    return;
                 }
                 else
                 {
@@ -33,38 +37,9 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        private static void ReadConfigFile(string filePath)
-        {
-            int PID = Environment.ProcessId;
 
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePath);
 
-                XmlNode sourceNode = doc.SelectSingleNode("/Config/source");
-                string sourceFolder = sourceNode?.InnerText ?? DefaultSourceFolder;
-
-                XmlNode backupToNode = doc.SelectSingleNode("/Config/backupto");
-                string backupToFolder = backupToNode?.InnerText ?? DefaultBackupToFolder;
-
-                // 验证路径是否有效
-                if (!IsValidPath(sourceFolder) || !IsValidPath(backupToFolder))
-                {
-                    LogConsole.Log($"WorldBackup CheckConfig Error", $"无效的路径配置: {sourceFolder} 或 {backupToFolder}", ConsoleColor.Red);
-                    Environment.Exit(1);
-                }
-
-                LogConsole.Log($"WorldBackup CheckConfig Progress ({PID})", $"读取配置成功（{sourceFolder} => {backupToFolder}）", ConsoleColor.Blue);
-            }
-            catch (Exception ex)
-            {
-                LogConsole.Log($"WorldBackup CheckConfig Error", $"读取配置文件时发生错误: {ex.Message}", ConsoleColor.Red);
-                throw;
-            }
-        }
-
-        private static bool IsValidPath(string path)
+        public static bool IsValidPath(string path)
         {
             if (string.IsNullOrWhiteSpace(path))
             {
@@ -89,7 +64,7 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        private static void CreateConfigFile(string filePath)
+        public static void CreateConfigFile(string filePath)
         {
             int PID = Environment.ProcessId;
 
@@ -103,28 +78,16 @@ namespace com.Lavaver.WorldBackup
                 doc.AppendChild(configNode);
 
                 XmlElement sourceNode = doc.CreateElement("source");
-                sourceNode.InnerText = DefaultSourceFolder;
+                sourceNode.InnerText = GlobalString.DefaultSourceFolder;
                 configNode.AppendChild(sourceNode);
 
                 XmlElement backupToNode = doc.CreateElement("backupto");
-                backupToNode.InnerText = DefaultBackupToFolder;
+                backupToNode.InnerText = GlobalString.DefaultBackupToFolder;
                 configNode.AppendChild(backupToNode);
 
                 XmlElement NTPServerNode = doc.CreateElement("NTP-Server");
-                NTPServerNode.InnerText = DefaultNTPServerAddress;
+                NTPServerNode.InnerText = GlobalString.DefaultNTPServerAddress;
                 configNode.AppendChild(NTPServerNode);
-
-                XmlElement DAVUploadUserNode = doc.CreateElement("DAVUserName");
-                DAVUploadUserNode.InnerText = GlobalString.ExampleDAVUsrname;
-                configNode.AppendChild(DAVUploadUserNode);
-
-                XmlElement DAVUploadPasswordNode = doc.CreateElement("DAVPassword");
-                DAVUploadPasswordNode.InnerText = GlobalString.ExampleDAVPassword;
-                configNode.AppendChild(DAVUploadPasswordNode);
-
-                XmlElement DAVUploadURLNode = doc.CreateElement("DAVHost");
-                DAVUploadURLNode.InnerText = GlobalString.ExampleDAVServer;
-                configNode.AppendChild(DAVUploadURLNode);
 
                 doc.Save(filePath);
 

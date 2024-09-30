@@ -11,25 +11,25 @@ namespace com.Lavaver.WorldBackup.Core
         /// 至于为什么要用并发锁相比用过这软件的人都知道这软件运行速度和效率不是一般的高，光是基岩版存档备份相信使用过的人都知道即使是同步线程处理速度和并发性就不亚于异步线程（当然还有一部分归功于优化好）<br/>
         /// 未来有可能会做可选的并发锁开/关参数（但相信我关了之后日志记录必定会炸）
         /// </summary>
-        private static readonly object Concurrent_Lock = new object();
+        public static readonly object Concurrent_Lock = new object();
 
         /// <summary>
         /// 日志文件名
         /// </summary>
-        private static readonly string logFileName = $"log_{Guid.NewGuid().ToString()}.log";
+        public static readonly string logFileName = $"log_{Guid.NewGuid().ToString()}.log";
 
         /// <summary>
         /// 日志文件夹
         /// </summary>
-        private static readonly string logPath = "Log";
+        public static readonly string logPath = "Log";
 
         /// <summary>
         /// 进程监听
         /// </summary>
-        private static TextWriterTraceListener _traceListener;
+        public static TextWriterTraceListener? _traceListener;
 
 
-        private static string GetCurrentTime(bool withMilliseconds = false)
+        public static string GetCurrentTime(bool withMilliseconds = false)
         {
             return withMilliseconds ? $"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}" : $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}";
         }
@@ -134,7 +134,7 @@ namespace com.Lavaver.WorldBackup.Core
             }
         }
 
-        private static void HandleException(Exception ex, string message)
+        public static void HandleException(Exception ex, string message)
         {
             string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
             ConsoleColor originalColor = Console.ForegroundColor;

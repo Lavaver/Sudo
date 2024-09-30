@@ -6,7 +6,7 @@ namespace com.Lavaver.WorldBackup
 {
     internal class Backup
     {
-        private static System.Timers.Timer timer;
+        public static System.Timers.Timer timer;
 
         public static void Pullup()
         {
@@ -19,7 +19,7 @@ namespace com.Lavaver.WorldBackup
             LogConsole.Log("WorldBackup Backup", "后台备份模块已启动，每隔 15 分钟自动备份一次。如需停止，请按下 Ctrl + C 离开程序", ConsoleColor.Blue);
         }
 
-        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        public static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        private static void OnExit(object sender, ConsoleCancelEventArgs args)
+        public static void OnExit(object sender, ConsoleCancelEventArgs args)
         {
             // 阻止程序立即退出
             args.Cancel = true;

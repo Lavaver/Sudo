@@ -9,24 +9,29 @@
     <Import_RootNamespace>WorldBackup_SharedProject</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AbstractID.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AfterConfig.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Backup.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BackupCompressionAndCleanup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Config\AfterConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Backup\Backup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Backup\BackupCompressionAndCleanup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bedrock\Backup.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CheckConfig.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CheckUpdate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DelDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExtHttpMethod.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FirstBackup.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GlobalClass.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Init.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LogConsole.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NTPC.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ReadConfig\Global.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ReadDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RebuildConfig.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RecoveryFile.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sumeru Online.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Config\CheckConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\MySQL\Auth.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\MySQL\Common.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\MySQL\SQLConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)General\CheckUpdate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\DelDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Backup\FirstBackup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Global\GlobalClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)General\Init.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)General\LogConsole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)General\NTPC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Global\ReadConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\ReadDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Config\RebuildConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\RecoveryFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Config\" />
+    <Folder Include="$(MSBuildThisFileDirectory)General\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Backup\" />
   </ItemGroup>
 </Project>

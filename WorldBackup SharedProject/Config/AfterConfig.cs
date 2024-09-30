@@ -55,7 +55,7 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        private static void HandleChoice(string elementName)
+        public static void HandleChoice(string elementName)
         {
             try
             {

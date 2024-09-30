@@ -1,10 +1,10 @@
 ﻿using com.Lavaver.WorldBackup.Core;
-using com.Lavaver.WorldBackup.Database;
 using com.Lavaver.WorldBackup.Global;
-using System;
-using System.Diagnostics;
-using System.IO;
+using com.Lavaver.WorldBackup.Database.MySQL;
+using MySql.Data.MySqlClient;
 using System.Xml.Linq;
+using System;
+using System.IO;
 
 namespace com.Lavaver.WorldBackup
 {
@@ -15,9 +15,20 @@ namespace com.Lavaver.WorldBackup
             try
             {
                 LogConsole.Log("WorldBackup Backup", "开始备份（此过程可能需要较长时间）", ConsoleColor.Green);
-                CheckAndCreateBackupDatabase();
-                var (source, backupto) = ReadConfig();
-                PerformBackup(source, backupto);
+                LogConsole.Log("WorldBackup Backup", "正在检查配置", ConsoleColor.Green);
+                if (SQLConfig.IsEnabled())
+                {
+                    SQL_CheckAndCreateBackupTable();
+                    var (source, backupto) = ReadConfig();
+                    PerformBackup(source, backupto);
+                }
+                else
+                {
+                    CheckAndCreateBackupDatabase();
+                    var (source, backupto) = ReadConfig();
+                    PerformBackup(source, backupto);
+                }
+
             }
             catch (Exception ex)
             {
@@ -25,7 +36,14 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        private static void CheckAndCreateBackupDatabase()
+        public static void SQL_CheckAndCreateBackupTable()
+        {
+            LogConsole.Log("WorldBackup Backup", "正在发送列表查询请求，这可能需要 1~2 分钟时间", ConsoleColor.Green);
+            Tables.Create();
+            LogConsole.Log("WorldBackup Backup", "列表查询请求查询完成", ConsoleColor.Green);
+        }
+
+        public static void CheckAndCreateBackupDatabase()
         {
             if (!File.Exists(GlobalString.DatabaseLocation))
             {
@@ -35,7 +53,7 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        private static (string source, string backupto) ReadConfig()
+        public static (string source, string backupto) ReadConfig()
         {
             if (!File.Exists(GlobalString.SoftwareConfigLocation))
             {
@@ -84,7 +102,17 @@ namespace com.Lavaver.WorldBackup
                     LogConsole.Log("WorldBackup Backup", $"无效的路径配置，检查配置文件的 source 值", ConsoleColor.Red);
                     Environment.Exit(1);
                 }
-                SaveBackupRecord(backupPath, backupIdentifier);
+
+                if (!SQLConfig.IsEnabled())
+                {
+
+                    SaveBackupRecord(backupPath, backupIdentifier);
+                }
+                else
+                {
+                    SQL_SaveBackupRecord(backupPath, backupIdentifier);
+                }
+            
             }
             catch (Exception ex)
             {
@@ -92,7 +120,7 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        private static void CopyDirectory(string sourceDir, string destinationDir)
+        public static void CopyDirectory(string sourceDir, string destinationDir)
         {
             Directory.CreateDirectory(destinationDir);
 
@@ -117,7 +145,7 @@ namespace com.Lavaver.WorldBackup
             CleanupObsoleteFilesAndDirectories(sourceDir, destinationDir);
         }
 
-        private static void CleanupObsoleteFilesAndDirectories(string sourceDir, string destinationDir)
+        public static void CleanupObsoleteFilesAndDirectories(string sourceDir, string destinationDir)
         {
             foreach (var destFile in Directory.GetFiles(destinationDir))
             {
@@ -142,7 +170,21 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        private static void SaveBackupRecord(string backupPath, string backupIdentifier)
+        public static void SQL_SaveBackupRecord(string backupPath, string backupIdentifier)
+        {
+            // 获取系统本地时间并非 NTP 时间（NTP 时间会导致插入失败），并格式化为 MySQL 时间格式
+            var backupTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            MySqlConnection conn = Auth.GetConnection();
+            conn.Open();
+            var cmd = conn.CreateCommand();
+            LogConsole.Log("WorldBackup Backup", "正在插入备份记录到数据库", ConsoleColor.Green);
+            cmd.CommandText = $"INSERT INTO `Backups` (`Identifier`, `Time`, `Path`) VALUES ('{backupIdentifier}', '{backupTime}', '{backupPath}')";
+            LogConsole.Log("WorldBackup Backup", "插入备份记录到数据库完成", ConsoleColor.Green);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public static void SaveBackupRecord(string backupPath, string backupIdentifier)
         {
             var backupTime = NTPC.Run();
 

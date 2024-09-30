@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using com.Lavaver.WorldBackup.async;
 using com.Lavaver.WorldBackup.Core;
 using com.Lavaver.WorldBackup.Database;
 using com.Lavaver.WorldBackup.Rebuild;
@@ -48,9 +47,6 @@ namespace com.Lavaver.WorldBackup
                     break;
                 case "-recovery":
                     RecoveryFile.RestoreData();
-                    break;
-                case "-WebDAV":
-                    HandleWebDAVArgs(args);
                     break;
                 case "-config":
                     AfterConfig.Run();
@@ -100,41 +96,6 @@ namespace com.Lavaver.WorldBackup
                     break;
                 case "log":
                     DelDatabase.DelLog();
-                    break;
-                default:
-                    LogConsole.Log("Init", "不正确的操作模式", ConsoleColor.Red);
-                    break;
-            }
-        }
-
-        private static async void HandleWebDAVArgs(string[] args)
-        {
-            if (args.Length < 3)
-            {
-                LogConsole.Log("Init", $"用法: {1} -WebDAV <SourceFilePath> [<DestinationPath>] <Upload/Download/Delete/NewFolder>", ConsoleColor.Yellow);
-                return;
-            }
-
-            string sourceFilePath = args[1];
-            string destinationPath = args.Length > 5 ? args[2] : "/"; // 默认为根路径
-
-            switch (args[3])
-            {
-                case "Upload":
-                    await WebDAV.UploadAsync(sourceFilePath, destinationPath);
-                    break;
-                case "Download":
-                    await WebDAV.DownloadAsync(destinationPath);
-                    break;
-                case "Delete":
-                    await WebDAV.DeleteAsync(destinationPath);
-
-                    break;
-                case "NewFolder":
-                    await WebDAV.NewFolderAsync(destinationPath);
-                    break;
-                case "List":
-                    await WebDAV.ListAsync();
                     break;
                 default:
                     LogConsole.Log("Init", "不正确的操作模式", ConsoleColor.Red);

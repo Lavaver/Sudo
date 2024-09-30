@@ -1,11 +1,7 @@
 ﻿using com.Lavaver.WorldBackup.Core;
-using System;
-using System.Collections.Generic;
+using com.Lavaver.WorldBackup.Database.MySQL;
+using com.Lavaver.WorldBackup.Global;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace com.Lavaver.WorldBackup
@@ -15,19 +11,34 @@ namespace com.Lavaver.WorldBackup
     /// </summary>
     public class Compression_and_Cleanup
     {
-        private static int selectedIndex = 0; // 声明 selectedIndex 作为类的私有静态变量
+        public static int selectedIndex = 0; // 声明 selectedIndex 作为类的私有静态变量
         public static void Run()
         {
-            string xmlFilePath = "Backup_DataBase.xml";
-            string configFilePath = "WorldBackupConfig.xml";
-
-            if (!File.Exists(xmlFilePath))
+            if (SQLConfig.IsEnabled())
             {
-                LogConsole.Log("备份数据库", "未找到备份数据库文件。请先正常运行程序以自动备份并生成数据库信息后再试。", ConsoleColor.Red);
-                return;
+                string returnData = Tables.GetBackupTable();
+                if (returnData == null)
+                {
+                    LogConsole.Log("备份数据库", "未找到备份记录", ConsoleColor.Yellow);
+                    return;
+                }
+                else
+                {
+                    LogConsole.Log("备份数据库", "正在读备份记录", ConsoleColor.Green);
+                    SQL_Run(returnData);
+                    return;
+                }
+            }
+            else
+            {
+                if (!File.Exists(GlobalString.DatabaseLocation))
+                {
+                    LogConsole.Log("备份数据库", "未找到备份数据库文件。请先正常运行程序以自动备份并生成数据库信息后再试。", ConsoleColor.Red);
+                    return;
+                }
             }
 
-            if (!File.Exists(configFilePath))
+            if (!File.Exists(GlobalString.SoftwareConfigLocation))
             {
                 LogConsole.Log("配置文件", "未找到配置文件。请检查配置文件路径。", ConsoleColor.Red);
                 return;
@@ -36,8 +47,8 @@ namespace com.Lavaver.WorldBackup
             try
             {
                 // 加载 XML 文件
-                XDocument doc = XDocument.Load(xmlFilePath);
-                XDocument configDoc = XDocument.Load(configFilePath);
+                XDocument doc = XDocument.Load(GlobalString.DatabaseLocation);
+                XDocument configDoc = XDocument.Load(GlobalString.DatabaseLocation);
 
                 if (doc.Root == null || doc.Root.Elements("Backup").Count() == 0)
                 {
@@ -123,7 +134,7 @@ namespace com.Lavaver.WorldBackup
                             backups[selectedIndex].Element.Remove();
                         }
                         selectedIndexes.Clear();
-                        doc.Save(xmlFilePath);
+                        doc.Save(GlobalString.DatabaseLocation);
                     }
                     else if (key == ConsoleKey.F1) // 压缩选中备份
                     {
@@ -134,7 +145,7 @@ namespace com.Lavaver.WorldBackup
                         }
                         selectedIndexes.Clear();
                         
-                        doc.Save(xmlFilePath);
+                        doc.Save(GlobalString.DatabaseLocation);
                     }
                 }
             }
@@ -144,7 +155,112 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        private static void DeleteBackup(dynamic backup)
+        static void SQL_Run(string returnData)
+        {
+            // 将纯文本数据转换为 XML 数据
+            XDocument doc = XDocument.Parse(returnData);
+
+            if (doc.Root == null || doc.Root.Elements("Backup").Count() == 0)
+            {
+                LogConsole.Log("备份数据库", "未找到备份记录", ConsoleColor.Yellow);
+                return;
+            }
+
+            // 查询和解析 XML 内容
+            var backups = doc.Descendants("Backup")
+                                 .Select(backup => new
+                                  {
+                                      Element = backup,
+                                      Identifier = backup.Element("Identifier")?.Value,
+                                      Time = DateTime.Parse(backup.Element("Time")?.Value), // 解析备份时间
+                                      Path = backup.Element("Path")?.Value,
+                                  })
+                                 .ToList();
+
+            List<int> selectedIndexes = new List<int>(); // 存储多选备份的索引
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("{0,-40} {1,-20} {2}", "Identifier", "Time", "Path");
+                Console.WriteLine(new string('-', 100));
+
+                // 仅显示时间大于或等于5个月的备份记录
+                var validBackups = backups.Where(b => (DateTime.Now - b.Time).TotalDays >= 5 * 30);
+
+                if (!validBackups.Any())
+                {
+                    Console.WriteLine("暂无过时备份。你可以按下 Ctrl + C 结束运行程序");
+                    Console.ReadKey();
+                    continue;
+                }
+
+                foreach (var backup in validBackups)
+                {
+                    int index = backups.IndexOf(backup);
+
+                    if (selectedIndexes.Contains(index))
+                    {
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                    }
+                    else if (index == selectedIndex)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkCyan;
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+
+                    Console.WriteLine("{0,-40} {1,-20} {2}", backup.Identifier, backup.Time.ToString("yyyy-MM-dd HH:mm:ss"), backup.Path);
+
+                    Console.ResetColor();
+                }
+
+                var key = Console.ReadKey(true).Key;
+                if (key == ConsoleKey.UpArrow)
+                {
+                    selectedIndex = (selectedIndex > 0) ? selectedIndex - 1 : backups.Count - 1;
+                }
+                else if (key == ConsoleKey.DownArrow)
+                {
+                    selectedIndex = (selectedIndex + 1) % backups.Count;
+                }
+                else if (key == ConsoleKey.Enter) // 支持多选备份
+                {
+                    if (!selectedIndexes.Contains(selectedIndex))
+                    {
+                        selectedIndexes.Add(selectedIndex);
+                    }
+                    else
+                    {
+                        selectedIndexes.Remove(selectedIndex);
+                    }
+                }
+                else if (key == ConsoleKey.F2) // 递归删除选中备份
+                {
+                    foreach (var index in selectedIndexes.OrderByDescending(x => x))
+                    {
+                        DeleteBackup(backups[index]);
+                        backups.RemoveAt(index);
+                        backups[selectedIndex].Element.Remove();
+                    }
+                    selectedIndexes.Clear();
+                    doc.Save(GlobalString.DatabaseLocation);
+                }
+                else if (key == ConsoleKey.F1) // 压缩选中备份
+                {
+                    foreach (var index in selectedIndexes.OrderByDescending(x => x))
+                    {
+                        CompressBackup(backups[index]);
+                        backups[selectedIndex].Element.Remove();
+                    }
+                    selectedIndexes.Clear();
+
+                    doc.Save(GlobalString.DatabaseLocation);
+                }
+            }
+        }
+
+        public static void DeleteBackup(dynamic backup)
         {
             LogConsole.Log("备份压缩与清理", $"正在删除 {backup}", ConsoleColor.Blue);
 
@@ -177,7 +293,7 @@ namespace com.Lavaver.WorldBackup
 
         
 
-        private static void CompressBackup(dynamic backup)
+        public static void CompressBackup(dynamic backup)
         {
             LogConsole.Log("备份压缩与清理", $"正在压缩 {backup.Identifier}", ConsoleColor.Blue);
 

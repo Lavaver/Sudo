@@ -1,4 +1,5 @@
 ﻿using com.Lavaver.WorldBackup.Core;
+using com.Lavaver.WorldBackup.Database.MySQL;
 using com.Lavaver.WorldBackup.Global;
 using System.Xml.Linq;
 
@@ -8,14 +9,23 @@ namespace com.Lavaver.WorldBackup.Database
     {
         public static void DelFile()
         {
-            if (File.Exists(GlobalString.DatabaseLocation))
+            if (SQLConfig.IsEnabled())
             {
-                File.Delete(GlobalString.DatabaseLocation);
-                LogConsole.Log("备份数据库", "已删除数据库文件", ConsoleColor.Red);
+                LogConsole.Log("备份数据库（MySQL）", "正在请求删除备份记录表", ConsoleColor.Yellow);
+                Tables.Drop();
+                LogConsole.Log("备份数据库（MySQL）", "已删除备份记录表", ConsoleColor.Green);
             }
             else
             {
-                LogConsole.Log("备份数据库", "数据库文件不存在", ConsoleColor.Yellow);
+                if (File.Exists(GlobalString.DatabaseLocation))
+                {
+                    File.Delete(GlobalString.DatabaseLocation);
+                    LogConsole.Log("备份数据库", "已删除数据库文件", ConsoleColor.Red);
+                }
+                else
+                {
+                    LogConsole.Log("备份数据库", "数据库文件不存在", ConsoleColor.Yellow);
+                }
             }
         }
 
