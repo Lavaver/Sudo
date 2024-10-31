@@ -5,9 +5,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyVersion>7.0.0</AssemblyVersion>
-    <FileVersion>7.0.0.0</FileVersion>
-    <Version>7.0.0</Version>
+    <AssemblyVersion>7.1.0</AssemblyVersion>
+    <FileVersion>7.1.0.4451</FileVersion>
+    <Version>7.1.0</Version>
     <Title>Worldbackup</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Lavaver/WorldBackup</RepositoryUrl>
@@ -48,6 +48,16 @@
 
   <ItemGroup>
     <Compile Remove="D:\repos\WorldBackup\WorldBackup SharedProject\Network Time Protocol Calibrators %28NTP-C%29.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="database-2-line.ico" />
+    <None Remove="MySQL.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="database-2-line.ico" />
+    <Content Include="MySQL.ico" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,7 +7,7 @@
 ## 该软件包括如下组件/内容
 
 - LogConsole - 统一的可缩放日志模块
-- Backup Database（备份数据库） - 记录备份详情
+- Backup Database（备份数据库）与 MySQL Remote Database - 记录备份详情
 - Backup 与 FirstBackup 模块 - 提供完整的冷备份解决方案
 - Database Recovery（数据库恢复） - 从数据库记录中恢复指定的备份
 - NTP-C（Network Time Protocol Calibrators，网络时间协议校准器） - 实时比对 NTP 与系统时间，并在备份中直接使用 NTP 时间
@@ -35,6 +35,7 @@
 
 `-bedrock` - 备份基岩版全部存档（需要管理员权限）
 
+
 ## 关于之后本项目的代码维护方向
 
 这个项目在大多数人看来已经完善到不能再完善的地步了，但因为这个项目在我眼里拥有特殊意义，所以此后将继续（保持非连续性）维护。
@@ -43,15 +44,8 @@
 
 > 但学校机房电脑仍用着上古的 Windows 7 ，并且像 Git 一类的版本控制软件（以及一大堆开发环境）也没有安装（不过也不是坏到没边，至少还有 VS 2019 可以用（不过开发负载只有 C++ 我是不能忍的（PS：我只在 C# 可以发挥一席之地）），各种组件处于东缺西缺的状态，网速还慢的一批（甚至连基本的 [VS Code Web 版](https://vscode.dev) 都加载不出来...即使带了电脑也要面对很多现实问题
 
-## 最近更新速报 | RL 7.0
+## 最近更新速报 | RL 7.1
 
-- 由于不可抗力，从此版本开始不再使用 WebDAV
-- 可以使用远程或本地 MySQL 数据库代替本地的备份数据库（没想到先上来的是 MySQL 而不是 SQLite ，但也在情理之中）
-- 配置文件新增隐式的 MySQL 配置选项：
-```xml
-<MySQL>true</MySQL>
-```
+- 包括了一些功能性改进
 
-- WorldBackup For Webcation 正在计划于 2024/12/01 正式上线，采用 `Golang` 编写，更轻量更高效，可以通过浏览器远程进行单次备份或固定备份，并且原生支持 WebDAV 备份文件线上浏览支持、X-IPA Single-Point Account 在线同步备份记录等实用功能，甚为高能。
-
-> 无论何时，只要软件配置文件中带有这个配置项，则会使用 MySQL 代替原数据库记录**此后备份的新记录**（未来会考虑加班写出迁移功能），并生成用于 MySQL 数据库认证与连接的 `SQLAuth.authfile` 文件。该文件格式类似于 `.properties` （原本计划用类似于 SSH 的 `host:port@user:password/database` 配置方式，但为了大家方便还是用那格式）。相应的，各种涉及数据库的操作例如查询所消耗的时间将大幅增加，建议网络不佳的用户继续使用老式 XML 数据库或者本地搭建 MySQL
+> （Base64 编码后更新速报） 5L2/55SoIGAtaGFsbG93c2RheWAg5Y+C5pWw6L+Q6KGM77yM6K+05LiN5a6a5Lya5pyJ5LuA5LmI5oOK5ZacLi4u

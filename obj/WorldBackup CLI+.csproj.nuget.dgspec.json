@@ -5,7 +5,7 @@
   },
   "projects": {
     "D:\\repos\\WorldBackup\\WorldBackup CLI+.csproj": {
-      "version": "7.0.0",
+      "version": "7.1.0",
       "restore": {
         "projectUniqueName": "D:\\repos\\WorldBackup\\WorldBackup CLI+.csproj",
         "projectName": "WorldBackup CLI+",
@@ -75,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

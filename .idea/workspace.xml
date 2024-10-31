@@ -2,41 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="275291d9-4393-423f-9ef8-6233ed254292" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.metadata.v8.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.metadata.v8.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.projects.v8.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.projects.v8.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.strings.v8.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.strings.v8.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/VSWorkspaceState.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.metadata.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.metadata.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.projects.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.projects.v9.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.strings.v9.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/worldbackup.strings.v9.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/WorldBackup/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/FileContentIndex/03b949af-8047-4c41-894d-11d9642745f6.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/FileContentIndex/45297f68-baaa-4414-b043-b79d5387519f.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/FileContentIndex/5fe2640e-97bc-48a2-a35a-6338baec5a56.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/FileContentIndex/6c551283-2ac9-42d9-a4fb-78ed3b40654e.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/FileContentIndex/5d70e13d-fd4e-48f6-9069-950772616959.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/FileContentIndex/685b78d8-432d-42a3-87e8-3eccf72232e8.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/FileContentIndex/8fa3e13a-a424-4870-a7d7-0ad89e98173d.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/FileContentIndex/b2c5d3a4-26cc-4dd3-bc28-a25bac8b1c76.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/FileContentIndex/c8a5eca2-a6c4-488d-ab58-1c9ed57889c8.vsidx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/WorldBackup/v17/.futdcache.v2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/WorldBackup/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/v17/.wsuo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/WorldBackup/v17/.wsuo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/v17/DocumentLayout.backup.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/WorldBackup/v17/DocumentLayout.backup.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vs/WorldBackup/v17/DocumentLayout.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/WorldBackup/v17/DocumentLayout.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/slnx.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/slnx.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DelDatabase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DelDatabase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MainProgram.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RecoveryFile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/RecoveryFile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorldBackup.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WorldBackup.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/WorldBackup.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/WorldBackup.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/WorldBackup.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/WorldBackup.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/WorldBackup.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/WorldBackup.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/ref/WorldBackup.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/ref/WorldBackup.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/refint/WorldBackup.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/refint/WorldBackup.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/WorldBackup.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/WorldBackup.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorldBackup SharedProject/Bedrock/Backup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorldBackup SharedProject/Bedrock/Backup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorldBackup SharedProject/General/LogConsole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorldBackup SharedProject/General/LogConsole.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorldBackup SharedProject/WorldBackup SharedProject.shproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorldBackup.sln" beforeDir="false" afterPath="$PROJECT_DIR$/WorldBackup.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup CLI+.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup CLI+.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup CLI+.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup CLI+.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup CLI+.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup CLI+.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup CLI+.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Release/net8.0/WorldBackup CLI+.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/WorldBackup CLI+.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/WorldBackup CLI+.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/WorldBackup CLI+.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/WorldBackup CLI+.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
     </list>
@@ -48,10 +38,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2kPxxEnXdk6mFXxvwQgYCHIT8kE" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -62,18 +52,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/repos/WorldBackup",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -85,5 +68,16 @@
       <workItem from="1723199268119" duration="12000" />
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

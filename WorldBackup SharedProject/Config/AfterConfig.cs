@@ -1,10 +1,12 @@
 ﻿using com.Lavaver.WorldBackup.Core;
+using com.Lavaver.WorldBackup.Database.MySQL;
 using com.Lavaver.WorldBackup.Global;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace com.Lavaver.WorldBackup
@@ -19,9 +21,14 @@ namespace com.Lavaver.WorldBackup
                 Console.WriteLine("1. 来源文件夹");
                 Console.WriteLine("2. 备份到");
                 Console.WriteLine("3. NTP 服务器");
-                Console.WriteLine("4. WebDAV 用户名");
-                Console.WriteLine("5. WebDAV 密码");
-                Console.WriteLine("6. WebDAV 服务器地址");
+                if (SQLConfig.IsEnabled())
+                {
+                    Console.WriteLine("4. 关闭 MySQL 模式");
+                }
+                else
+                {
+                    Console.WriteLine("4. 启用 MySQL 模式");
+                }
                 Console.WriteLine("0. 退出");
 
                 string choice = Console.ReadLine();
@@ -38,13 +45,14 @@ namespace com.Lavaver.WorldBackup
                         HandleChoice("NTP-Server");
                         break;
                     case "4":
-                        HandleChoice("DAVUserName");
-                        break;
-                    case "5":
-                        HandleChoice("DAVPassword");
-                        break;
-                    case "6":
-                        HandleChoice("DAVHost");
+                        if (SQLConfig.IsEnabled())
+                        {
+                            HandleSQLClose();
+                        }
+                        else
+                        {
+                            HandleSQLCreate();
+                        }
                         break;
                     case "0":
                         return;
@@ -83,6 +91,59 @@ namespace com.Lavaver.WorldBackup
                 {
                     LogConsole.Log("配置", $"没有元素 {elementName}", ConsoleColor.Red);
                 }
+            }
+            catch (Exception ex)
+            {
+                LogConsole.Log("配置", $"{ex.Message}", ConsoleColor.Red);
+            }
+        }
+
+        static void HandleSQLClose()
+        {
+            try
+            {
+                // 加载 XML 文档
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(GlobalString.SoftwareConfigLocation);
+
+                // 查找所有 MySQL 节点
+                XmlNodeList mySqlNodes = xmlDoc.GetElementsByTagName("MySQL");
+
+                // 遍历所有 MySQL 节点并删除之
+                foreach (XmlNode node in mySqlNodes)
+                {
+                    node.ParentNode.RemoveChild(node);
+                }
+
+                // 保存修改后的 XML 文档
+                xmlDoc.Save(GlobalString.SoftwareConfigLocation);
+
+                LogConsole.Log("配置", "已完成", ConsoleColor.Green);
+            }
+            catch(Exception ex)
+            {
+                LogConsole.Log("配置", $"{ex.Message}", ConsoleColor.Red);
+            }
+        }
+
+        static void HandleSQLCreate()
+        {
+            try
+            {
+                // 加载 XML 文档
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(GlobalString.SoftwareConfigLocation);
+
+                // 创建 MySQL 节点
+                XmlElement mySqlNode = xmlDoc.CreateElement("MySQL");
+                mySqlNode.InnerText = "true"; 
+
+                xmlDoc.DocumentElement.AppendChild(mySqlNode);
+
+                // 保存修改后的 XML 文档
+                xmlDoc.Save(GlobalString.SoftwareConfigLocation);
+
+                LogConsole.Log("配置", "已完成", ConsoleColor.Green);
             }
             catch (Exception ex)
             {

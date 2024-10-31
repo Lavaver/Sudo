@@ -7,9 +7,7 @@ namespace com.Lavaver.WorldBackup.Core
     internal class LogConsole
     {
         /// <summary>
-        /// 并发锁，防止多个日志并发进行导致竞争问题<br/>
-        /// 至于为什么要用并发锁相比用过这软件的人都知道这软件运行速度和效率不是一般的高，光是基岩版存档备份相信使用过的人都知道即使是同步线程处理速度和并发性就不亚于异步线程（当然还有一部分归功于优化好）<br/>
-        /// 未来有可能会做可选的并发锁开/关参数（但相信我关了之后日志记录必定会炸）
+        /// 并发锁，防止多个日志并发进行导致竞争问题
         /// </summary>
         public static readonly object Concurrent_Lock = new object();
 

@@ -3,56 +3,28 @@
   "WorkspaceRootPath": "D:\\repos\\WorldBackup\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|d:\\repos\\worldbackup\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\config\\checkconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|solutionrelative:worldbackup sharedproject\\config\\checkconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject Yosemite.shproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\global\\globalclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject Yosemite.shproj|solutionrelative:worldbackup sharedproject\\global\\globalclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|d:\\repos\\worldbackup\\worldbackup cli\u002B.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|solutionrelative:worldbackup cli\u002B.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\backup\\firstbackup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|solutionrelative:worldbackup sharedproject\\backup\\firstbackup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\backup\\backupcompressionandcleanup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|solutionrelative:worldbackup sharedproject\\backup\\backupcompressionandcleanup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\general\\init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|solutionrelative:worldbackup sharedproject\\general\\init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\database\\mysql\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|solutionrelative:worldbackup sharedproject\\database\\mysql\\auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\database\\mysql\\sqlconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|solutionrelative:worldbackup sharedproject\\database\\mysql\\sqlconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\database\\mysql\\common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|solutionrelative:worldbackup sharedproject\\database\\mysql\\common.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\global\\globalclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|solutionrelative:worldbackup sharedproject\\global\\globalclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|d:\\repos\\worldbackup\\mainprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|solutionrelative:mainprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\database\\readdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|solutionrelative:worldbackup sharedproject\\database\\readdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|d:\\repos\\worldbackup\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}|WorldBackup CLI\u002B.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\database\\recoveryfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject.shproj|solutionrelative:worldbackup sharedproject\\database\\recoveryfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject Yosemite.shproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\general\\checkupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject Yosemite.shproj|solutionrelative:worldbackup sharedproject\\general\\checkupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject Yosemite.shproj|d:\\repos\\worldbackup\\worldbackup sharedproject\\config\\afterconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3228C9FC-B1BD-4674-AFFD-525746C9B529}|WorldBackup SharedProject\\WorldBackup SharedProject Yosemite.shproj|solutionrelative:worldbackup sharedproject\\config\\afterconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,85 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 9,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Common.cs",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Database\\MySQL\\Common.cs",
-              "RelativeDocumentMoniker": "WorldBackup SharedProject\\Database\\MySQL\\Common.cs",
-              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Database\\MySQL\\Common.cs",
-              "RelativeToolTip": "WorldBackup SharedProject\\Database\\MySQL\\Common.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T12:57:37.142Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WorldBackup CLI\u002B",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup CLI\u002B.csproj",
-              "RelativeDocumentMoniker": "WorldBackup CLI\u002B.csproj",
-              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup CLI\u002B.csproj",
-              "RelativeToolTip": "WorldBackup CLI\u002B.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-09-30T05:07:45.79Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CheckConfig.cs",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Config\\CheckConfig.cs",
-              "RelativeDocumentMoniker": "WorldBackup SharedProject\\Config\\CheckConfig.cs",
-              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Config\\CheckConfig.cs",
-              "RelativeToolTip": "WorldBackup SharedProject\\Config\\CheckConfig.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAUwBkAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T04:30:50.342Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SQLConfig.cs",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Database\\MySQL\\SQLConfig.cs",
-              "RelativeDocumentMoniker": "WorldBackup SharedProject\\Database\\MySQL\\SQLConfig.cs",
-              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Database\\MySQL\\SQLConfig.cs",
-              "RelativeToolTip": "WorldBackup SharedProject\\Database\\MySQL\\SQLConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T04:28:40.747Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FirstBackup.cs",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Backup\\FirstBackup.cs",
-              "RelativeDocumentMoniker": "WorldBackup SharedProject\\Backup\\FirstBackup.cs",
-              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Backup\\FirstBackup.cs",
-              "RelativeToolTip": "WorldBackup SharedProject\\Backup\\FirstBackup.cs",
-              "ViewState": "AgIAAJwAAAAAAAAAAAAQwK4AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-30T04:23:01.827Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "README.md",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\README.md",
-              "RelativeDocumentMoniker": "README.md",
-              "ToolTip": "D:\\repos\\WorldBackup\\README.md",
-              "RelativeToolTip": "README.md",
-              "ViewState": "AgIAACcAAAAAAAAAAADwvzoAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2024-09-30T04:05:05.485Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -151,94 +49,82 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "BackupCompressionAndCleanup.cs",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Backup\\BackupCompressionAndCleanup.cs",
-              "RelativeDocumentMoniker": "WorldBackup SharedProject\\Backup\\BackupCompressionAndCleanup.cs",
-              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Backup\\BackupCompressionAndCleanup.cs",
-              "RelativeToolTip": "WorldBackup SharedProject\\Backup\\BackupCompressionAndCleanup.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
+              "Title": "CheckUpdate.cs",
+              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\General\\CheckUpdate.cs",
+              "RelativeDocumentMoniker": "WorldBackup SharedProject\\General\\CheckUpdate.cs",
+              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\General\\CheckUpdate.cs",
+              "RelativeToolTip": "WorldBackup SharedProject\\General\\CheckUpdate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwgAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T13:00:54.49Z",
+              "WhenOpened": "2024-10-31T08:46:21.102Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Init.cs",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\General\\Init.cs",
-              "RelativeDocumentMoniker": "WorldBackup SharedProject\\General\\Init.cs",
-              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\General\\Init.cs",
-              "RelativeToolTip": "WorldBackup SharedProject\\General\\Init.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAIwBkAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T13:12:24.918Z",
+              "DocumentIndex": 1,
+              "Title": "WorldBackup CLI\u002B",
+              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup CLI\u002B.csproj",
+              "RelativeDocumentMoniker": "WorldBackup CLI\u002B.csproj",
+              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup CLI\u002B.csproj",
+              "RelativeToolTip": "WorldBackup CLI\u002B.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-31T08:45:39.458Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Auth.cs",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Database\\MySQL\\Auth.cs",
-              "RelativeDocumentMoniker": "WorldBackup SharedProject\\Database\\MySQL\\Auth.cs",
-              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Database\\MySQL\\Auth.cs",
-              "RelativeToolTip": "WorldBackup SharedProject\\Database\\MySQL\\Auth.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwCYAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T13:11:50.301Z",
-              "EditorCaption": ""
+              "DocumentIndex": 3,
+              "Title": "README.md",
+              "DocumentMoniker": "D:\\repos\\WorldBackup\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "D:\\repos\\WorldBackup\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAADIAAABrAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2024-10-31T08:45:33.683Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 2,
               "Title": "MainProgram.cs",
               "DocumentMoniker": "D:\\repos\\WorldBackup\\MainProgram.cs",
               "RelativeDocumentMoniker": "MainProgram.cs",
               "ToolTip": "D:\\repos\\WorldBackup\\MainProgram.cs",
               "RelativeToolTip": "MainProgram.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAYwA4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T13:12:08.751Z",
+              "WhenOpened": "2024-10-30T12:09:40.031Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AfterConfig.cs",
+              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Config\\AfterConfig.cs",
+              "RelativeDocumentMoniker": "WorldBackup SharedProject\\Config\\AfterConfig.cs",
+              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Config\\AfterConfig.cs",
+              "RelativeToolTip": "WorldBackup SharedProject\\Config\\AfterConfig.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwDUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-30T11:54:24.938Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "GlobalClass.cs",
               "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Global\\GlobalClass.cs",
               "RelativeDocumentMoniker": "WorldBackup SharedProject\\Global\\GlobalClass.cs",
               "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Global\\GlobalClass.cs",
               "RelativeToolTip": "WorldBackup SharedProject\\Global\\GlobalClass.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvw4AAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBUAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T13:03:01.874Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "RecoveryFile.cs",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Database\\RecoveryFile.cs",
-              "RelativeDocumentMoniker": "WorldBackup SharedProject\\Database\\RecoveryFile.cs",
-              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Database\\RecoveryFile.cs",
-              "RelativeToolTip": "WorldBackup SharedProject\\Database\\RecoveryFile.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAQwAgAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T12:27:34.615Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ReadDatabase.cs",
-              "DocumentMoniker": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Database\\ReadDatabase.cs",
-              "RelativeDocumentMoniker": "WorldBackup SharedProject\\Database\\ReadDatabase.cs",
-              "ToolTip": "D:\\repos\\WorldBackup\\WorldBackup SharedProject\\Database\\ReadDatabase.cs",
-              "RelativeToolTip": "WorldBackup SharedProject\\Database\\ReadDatabase.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwB8AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T12:27:28.015Z",
+              "WhenOpened": "2024-10-30T11:43:31.402Z",
               "EditorCaption": ""
             }
           ]

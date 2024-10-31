@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldBackup CLI+", "WorldBackup CLI+.csproj", "{C1584E0D-966F-40CC-B006-AFFF0F73C0C3}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WorldBackup SharedProject", "WorldBackup SharedProject\WorldBackup SharedProject.shproj", "{3228C9FC-B1BD-4674-AFFD-525746C9B529}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WorldBackup SharedProject Yosemite", "WorldBackup SharedProject\WorldBackup SharedProject Yosemite.shproj", "{3228C9FC-B1BD-4674-AFFD-525746C9B529}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

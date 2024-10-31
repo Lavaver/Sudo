@@ -28,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\ReadDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Config\RebuildConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\RecoveryFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Start\5LiH4pqh5Zyj4pqh6IqC4pqh5Yqy4pqh54iG4pqh5b2p4pqh6JuL.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Config\" />

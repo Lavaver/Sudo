@@ -6,6 +6,8 @@ namespace com.Lavaver.WorldBackup.Bedrock
 {
     public class Backup
     {
+
+
         static readonly Guid UUID = Guid.NewGuid();
 
         /// <summary>
@@ -25,9 +27,29 @@ namespace com.Lavaver.WorldBackup.Bedrock
 
         public static void Run()
         {
-            ScanWorld(MinecraftUWP_8wekyb3d8bbwe_LocalPath, MinecraftUWP_8wekyb3d8bbwe_LocalPath, FilePreSaveArea);
-            CreateZipArchive(ZipFileName_String, FilePreSaveArea);
-            LogConsole.Log("Bedrock Backup", "完成", ConsoleColor.Blue);
+            var os = Environment.OSVersion;
+
+            // 检查是否为 Windows NT 系统
+            if (os.Platform == PlatformID.Win32NT)
+            {
+                // 检查内部版本是否大于等于 10
+                if (os.Version.Major >= 10)
+                {
+                    ScanWorld(MinecraftUWP_8wekyb3d8bbwe_LocalPath, MinecraftUWP_8wekyb3d8bbwe_LocalPath, FilePreSaveArea);
+                    CreateZipArchive(ZipFileName_String, FilePreSaveArea);
+                    LogConsole.Log("Bedrock Backup", "完成", ConsoleColor.Blue);
+                }
+                else
+                {
+                    LogConsole.Log("Bedrock Backup", $"该功能仅支持系统内部版本 ≥10 （即 Windows 10/11 及之后的系统）才能使用该 UWP 应用特殊功能，但你的操作系统内部版本为 {os.Version}", ConsoleColor.Yellow);
+                    return;
+                }
+            }
+            else
+            {
+                LogConsole.Log("Bedrock Backup", $"该功能仅支持 Windows NT （即自 Windows 2000 及之后的系统）环境，但你的操作系统环境却为 {os.Platform}", ConsoleColor.Yellow);
+                return;
+            }
         }
 
         /// <summary>
@@ -70,6 +92,7 @@ namespace com.Lavaver.WorldBackup.Bedrock
             try
             {
                 using var zipArchive = ZipFile.Open(zipFileName, ZipArchiveMode.Create);
+                LogConsole.Log("Bedrock Backup - Archive", $"正在写入到 {zipFileName}", ConsoleColor.Green);
                 foreach (var kvp in fileBytesStorage)
                 {
                     string filePath = kvp.Key;
@@ -78,7 +101,6 @@ namespace com.Lavaver.WorldBackup.Bedrock
                     // 创建一个新的 ZipArchiveEntry 并将文件内容写入
                     var entry = zipArchive.CreateEntry(filePath, CompressionLevel.Optimal);
                     using var entryStream = entry.Open();
-                    LogConsole.Log("Bedrock Backup - CreateZipArchive", $"将 {fileBytes.Length} 字节写入到 {zipFileName}", ConsoleColor.Blue);
                     entryStream.Write(fileBytes, 0, fileBytes.Length);
                 }
             }
