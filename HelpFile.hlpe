@@ -1,0 +1,46 @@
+X-IPA Sudo (Release 7.2) 帮助文档
+用法：X-IPA Sudo
+           （以标准模式启动）
+    或 X-IPA Sudo [options] [Action]
+           （以功能模式启动）
+
+将选项、动作作为参数传递到程序。
+
+其中，选项包括：
+    -database
+                  读取 Backup_DataBase.wdb 本地数据库，或是 MySQL 远程数据库中的数据
+                  并将它们列表显示（其中最新记录特别标记）
+    -clear
+                  压缩或清理过时备份
+    -rm <data/database/config/log/all-data>
+                  永久删除选中或全部备份数据、本地或远程数据库（表）、配置文件、日志文件
+    -recovery
+                  恢复选定备份数据
+    -config
+                  对软件进行配置，使其按照用户定义的预期情况运行
+    -bedrock
+                  备份《Minecraft for Windows》下全部游戏存档
+                  在除了 Windows NT 或 NT 版本 <10 的系统下会阻止以此选项运行（系统平台检查）
+    -rebuild-config
+                  重新构建配置文件
+    -license
+                  软件开源许可证及授权信息
+    -update
+                  检查软件是否有可用更新
+                  
+其中，配置文件各节点含义如下：
+   <source>
+                  备份来源
+   <backupto>
+                  备份到
+   <NTP-Server>
+                  在线时间来源
+                  必须为有效的 NTP 地址，且接入有效的 Internet 连接
+                  当该节点值为 false 时，将使用系统本地时间
+                  这对于没有有效 Internet 连接或是私密环境下非常有用
+   <MySQL>（可选的）
+                  MySQL 模式
+                  当该节点存在且值为 true 时，将会生成 SQLAuth.authfile ，并引导完成 MySQL 模式初始化
+                  上述部分选项会因 MySQL 模式的启停而改变作用对象
+                  
+有关该软件的详细信息，请参阅 https://github.com/Lavaver/Sudo 。

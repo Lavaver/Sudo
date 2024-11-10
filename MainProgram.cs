@@ -1,26 +1,20 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using com.Lavaver.WorldBackup.Core;
 using com.Lavaver.WorldBackup.Database;
 using com.Lavaver.WorldBackup.Rebuild;
 using com.Lavaver.WorldBackup.Global;
-using com.Lavaver.WorldBackup.Start;
 
 namespace com.Lavaver.WorldBackup
 {
-    /// <summary>
-    /// 我见证着过往初版程序总共不到 500 行的消瘦春秋，见证着如今 7.0 里程碑式总共 2,240 余行的丰腴年华。那么下一站，这个项目该去往何方？
-    /// </summary>
     internal class MainProgram
     {
-        /// <summary>
-        /// 这么长的时间，我曾经在初版程序自述文件中的豪言通过代码写成了预言。这一行行代码和包名，无论它是否能注意起，在历史时间轴上，都是极具纪念碑性的建筑。
-        /// </summary>
+       static  string programName = AppDomain.CurrentDomain.FriendlyName;
         static async Task Main(string[] args)
         {
             var entryAssembly = Assembly.GetEntryAssembly();
             var version = entryAssembly?.GetName().Version ?? new Version(0, 0);
-            Console.Title = $"WorldBackup CLI+ v{version}";
+
+            Console.Title = $"X-IPA Sudo v{version}";
 
             LogConsole.Initialize();
 
@@ -35,10 +29,7 @@ namespace com.Lavaver.WorldBackup
                 await Init.Run();
             }
         }
-
-        /// <summary>
-        /// 总是站在代码和人文的十字路口，再回头望去初版程序，它就是十字路口的纪念碑。
-        /// </summary>
+        
         private static async Task HandleCommandLineArgs(string[] args)
         {
             switch (args[0])
@@ -49,7 +40,7 @@ namespace com.Lavaver.WorldBackup
                 case "-clear":
                     Compression_and_Cleanup.Run();
                     break;
-                case "-del":
+                case "-rm":
                     HandleDeleteArgs(args);
                     break;
                 case "-recovery":
@@ -61,7 +52,7 @@ namespace com.Lavaver.WorldBackup
                 case "-bedrock":
                     Bedrock.Backup.Run();
                     break;
-                case "-rebuildconfig":
+                case "-rebuild-config":
                     RebuildConfig.Run();
                     break;
                 case "-license":
@@ -76,9 +67,6 @@ namespace com.Lavaver.WorldBackup
                 case "-update":
                     await CheckUpdate.Run();
                     break;
-                case "-hallowsday":
-                    _5LiH4pqh5Zyj4pqh6IqC4pqh5Yqy4pqh54iG4pqh5b2p4pqh6JuL._6K6p5oiR5Lus54uC5qyi5ZCn77yB();
-                    break;
                 default:
                     LogConsole.Log("Init", "未识别的命令行参数", ConsoleColor.Red);
                     break;
@@ -88,16 +76,20 @@ namespace com.Lavaver.WorldBackup
 
         private static void HandleDeleteArgs(string[] args) 
         {
+            
             if (args.Length < 2) 
             {
-                LogConsole.Log("Init", $"用法：{args[0]} -del <data/database/config>", ConsoleColor.Yellow);
+                LogConsole.Log("Init", $"用法：{programName} -rm <data/database/config/all-data>", ConsoleColor.Yellow);
                 return;
             }
-
+            
             switch (args[1]) 
             {
                 case "data":
                     DelDatabase.DelData();
+                    break;
+                case "all-data":
+                    DelDatabase.DelAllData();
                     break;
                 case "database":
                     DelDatabase.DelFile();

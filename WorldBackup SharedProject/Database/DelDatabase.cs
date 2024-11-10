@@ -29,7 +29,26 @@ namespace com.Lavaver.WorldBackup.Database
             }
         }
 
-        
+        /// <summary>
+        /// 删除全部备份
+        /// </summary>
+        /// <param name="force">强制删除（默认为 false）</param>
+        public static void DelAllData()
+        {
+            var backupLocation = ReadBackupLocation.Get();
+            if (!string.IsNullOrEmpty(backupLocation))
+            {
+                // 删除备份目录下所有文件及子目录
+                if (Directory.Exists(backupLocation))
+                {
+                    Directory.Delete(backupLocation, true);
+                    LogConsole.Log("Sudo Remove(All Data)","已完成",ConsoleColor.Green);
+                }
+                LogConsole.Log("Sudo Remove(All Data)","不存在的目录",ConsoleColor.Red,true);
+            }
+            LogConsole.Log("Sudo Remove(All Data)","没有配置目标目录",ConsoleColor.Red,true);
+        }
+
         public static void DelData()
         {
             if (!File.Exists(GlobalString.DatabaseLocation))
@@ -132,20 +151,20 @@ namespace com.Lavaver.WorldBackup.Database
         {
             if (File.Exists(GlobalString.SoftwareConfigLocation))
             {
-                LogConsole.Log("软件配置", "警告：删除软件配置文件将会导致后续运行时需要重新配置，仅在迫不得已时使用。我们推荐你使用 -rebuildconfig 参数重新构建一个新的配置文件以便你重新开始。继续？[Y/N]", ConsoleColor.Yellow);
-                string? input = Console.ReadLine();
-                if (input == "y" || input == "Y")
+                LogConsole.Log("软件配置", "警告：删除软件配置文件将会导致后续运行时需要重新配置，仅在迫不得已时使用。我们推荐你使用 -rebuild-config 参数重新构建一个新的配置文件以便你重新开始。继续？[Y/N]", ConsoleColor.Yellow);
+                var input = Console.ReadLine();
+                switch (input)
                 {
-                    File.Delete(GlobalString.SoftwareConfigLocation);
-                    LogConsole.Log("软件配置", "已删除软件配置文件", ConsoleColor.Red);
-                }
-                else if (input == "n" || input == "N")
-                {
-                    LogConsole.Log("软件配置", "取消删除软件配置文件", ConsoleColor.Yellow);
-                }
-                else
-                {
-                    LogConsole.Log("软件配置", "输入错误，取消删除软件配置文件", ConsoleColor.Yellow);
+                    case "y" or "Y":
+                        File.Delete(GlobalString.SoftwareConfigLocation);
+                        LogConsole.Log("软件配置", "已删除软件配置文件", ConsoleColor.Red);
+                        break;
+                    case "n" or "N":
+                        LogConsole.Log("软件配置", "取消删除软件配置文件", ConsoleColor.Yellow);
+                        break;
+                    default:
+                        LogConsole.Log("软件配置", "输入错误，取消删除软件配置文件", ConsoleColor.Yellow);
+                        break;
                 }
             }
             else
@@ -157,36 +176,36 @@ namespace com.Lavaver.WorldBackup.Database
         public static void DelLog()
         {
             LogConsole.Log("日志文件管理", "警告：虽然没什么人在日志目录下放重要文件，但为了以防万一，需要确认你真的要删除日志目录及其所有文件。继续？[Y/N]", ConsoleColor.Yellow);
-            string? input = Console.ReadLine();
-            if (input == "y" || input == "Y")
+            var input = Console.ReadLine();
+            switch (input)
             {
-                DeleteDirectoryRecursively(GlobalString.LogLocation);
-                LogConsole.Log("日志文件管理", "已删除日志目录及其所有文件", ConsoleColor.Red);
-            }
-            else if (input == "n" || input == "N")
-            {
-                LogConsole.Log("日志文件管理", "取消删除日志目录及其所有文件", ConsoleColor.Yellow);
-            }
-            else
-            {
-                LogConsole.Log("日志文件管理", "输入错误，取消删除日志目录及其所有文件", ConsoleColor.Yellow);
+                case "y" or "Y":
+                    DeleteDirectoryRecursively(GlobalString.LogLocation);
+                    LogConsole.Log("日志文件管理", "已删除日志目录及其所有文件", ConsoleColor.Red);
+                    break;
+                case "n" or "N":
+                    LogConsole.Log("日志文件管理", "取消删除日志目录及其所有文件", ConsoleColor.Yellow);
+                    break;
+                default:
+                    LogConsole.Log("日志文件管理", "输入错误，取消删除日志目录及其所有文件", ConsoleColor.Yellow);
+                    break;
             }
         }
-       
 
-        public static void DeleteDirectoryRecursively(string targetDir)
+
+        private static void DeleteDirectoryRecursively(string targetDir)
         {
             try
             {
                 // 获取所有文件并删除
-                foreach (string file in Directory.GetFiles(targetDir))
+                foreach (var file in Directory.GetFiles(targetDir))
                 {
                     File.SetAttributes(file, FileAttributes.Normal);
                     File.Delete(file);
                 }
 
                 // 获取所有子目录并递归删除
-                foreach (string dir in Directory.GetDirectories(targetDir))
+                foreach (var dir in Directory.GetDirectories(targetDir))
                 {
                     DeleteDirectoryRecursively(dir);
                 }

@@ -47,11 +47,11 @@ namespace com.Lavaver.WorldBackup
                     case "4":
                         if (SQLConfig.IsEnabled())
                         {
-                            HandleSQLClose();
+                            HandleSqlClose();
                         }
                         else
                         {
-                            HandleSQLCreate();
+                            HandleSqlCreate();
                         }
                         break;
                     case "0":
@@ -63,18 +63,18 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        public static void HandleChoice(string elementName)
+        private static void HandleChoice(string elementName)
         {
             try
             {
-                XDocument doc = XDocument.Load(GlobalString.SoftwareConfigLocation);
-                XElement element = doc.Root.Element(elementName);
+                var doc = XDocument.Load(GlobalString.SoftwareConfigLocation);
+                var element = doc.Root.Element(elementName);
 
                 if (element != null)
                 {
                     LogConsole.Log("配置", $"当前配置为 {element.Value}", ConsoleColor.Blue);
                     Console.Write("输入新路径：");
-                    string newPath = Console.ReadLine();
+                    var newPath = Console.ReadLine();
 
                     if (!string.IsNullOrEmpty(newPath))
                     {
@@ -98,24 +98,16 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        static void HandleSQLClose()
+        private static void HandleSqlClose()
         {
             try
             {
                 // 加载 XML 文档
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(GlobalString.SoftwareConfigLocation);
-
-                // 查找所有 MySQL 节点
-                XmlNodeList mySqlNodes = xmlDoc.GetElementsByTagName("MySQL");
-
-                // 遍历所有 MySQL 节点并删除之
-                foreach (XmlNode node in mySqlNodes)
-                {
-                    node.ParentNode.RemoveChild(node);
-                }
-
-                // 保存修改后的 XML 文档
+                var xmlDoc = XDocument.Load(GlobalString.SoftwareConfigLocation);
+                var element = xmlDoc.Root.Element("MySQL");
+                
+                // 删除 MySQL 节点
+                element.Remove();
                 xmlDoc.Save(GlobalString.SoftwareConfigLocation);
 
                 LogConsole.Log("配置", "已完成", ConsoleColor.Green);
@@ -126,16 +118,16 @@ namespace com.Lavaver.WorldBackup
             }
         }
 
-        static void HandleSQLCreate()
+        static void HandleSqlCreate()
         {
             try
             {
                 // 加载 XML 文档
-                XmlDocument xmlDoc = new XmlDocument();
+                var xmlDoc = new XmlDocument();
                 xmlDoc.Load(GlobalString.SoftwareConfigLocation);
 
                 // 创建 MySQL 节点
-                XmlElement mySqlNode = xmlDoc.CreateElement("MySQL");
+                var mySqlNode = xmlDoc.CreateElement("MySQL");
                 mySqlNode.InnerText = "true"; 
 
                 xmlDoc.DocumentElement.AppendChild(mySqlNode);

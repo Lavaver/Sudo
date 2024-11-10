@@ -41,14 +41,12 @@ namespace com.Lavaver.WorldBackup.Bedrock
                 }
                 else
                 {
-                    LogConsole.Log("Bedrock Backup", $"该功能仅支持系统内部版本 ≥10 （即 Windows 10/11 及之后的系统）才能使用该 UWP 应用特殊功能，但你的操作系统内部版本为 {os.Version}", ConsoleColor.Yellow);
-                    return;
+                    LogConsole.Log("Bedrock Backup", $"该功能仅支持系统内部版本 ≥10 （即 Windows 10/11 及之后的系统）才能使用该 UWP 应用特殊功能，但你的操作系统版本为 {os.Version}", ConsoleColor.Yellow);
                 }
             }
             else
             {
-                LogConsole.Log("Bedrock Backup", $"该功能仅支持 Windows NT （即自 Windows 2000 及之后的系统）环境，但你的操作系统环境却为 {os.Platform}", ConsoleColor.Yellow);
-                return;
+                LogConsole.Log("Bedrock Backup", $"该功能仅支持 Windows NT 环境，但你的操作系统环境为 {os.Platform}", ConsoleColor.Yellow);
             }
         }
 

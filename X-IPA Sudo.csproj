@@ -5,15 +5,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyVersion>7.1.0</AssemblyVersion>
-    <FileVersion>7.1.0.4451</FileVersion>
-    <Version>7.1.0</Version>
-    <Title>Worldbackup</Title>
+    <AssemblyVersion>7.2.0</AssemblyVersion>
+    <FileVersion>7.2.0.15206</FileVersion>
+    <Version>7.2.0</Version>
+    <Title>X-IPA Sudo</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/Lavaver/WorldBackup</RepositoryUrl>
-    <Company>Lavaver</Company>
+    <RepositoryUrl>https://github.com/Lavaver/Sudo</RepositoryUrl>
+    <Company>Lavaver / X-IPA Studios</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <RootNamespace>WorldBackup_CLI+</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -64,6 +65,16 @@
     <PackageReference Include="MySql.Data" Version="9.0.0" />
     <PackageReference Include="Octokit" Version="13.0.1" />
     <PackageReference Include="System.Security.Permissions" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="HelpFile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="HelpFile.hlpe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
