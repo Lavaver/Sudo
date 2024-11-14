@@ -12,12 +12,35 @@ namespace com.Lavaver.WorldBackup.Global
         /// <summary>
         /// 数据库位置
         /// </summary>
-        public static readonly string DatabaseLocation = "Backup_DataBase.wdb";
+public static string DatabaseLocation()
+{
+    var homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+    var os = Environment.OSVersion;
+    return os.Platform switch
+    {
+        PlatformID.Win32NT => "Backup.xmldb",
+                
+        PlatformID.Unix or PlatformID.MacOSX or PlatformID.Other => $"{homeDirectory}/.sudari-cli/Backup.xmldb",
+        _ => "Backup.xmldb"
+    };
+}
+
 
         /// <summary>
         /// 软件配置位置
         /// </summary>
-        public static readonly string SoftwareConfigLocation = "config.xml";
+        public static string SoftwareConfigLocation()
+        {
+            var homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            var os = Environment.OSVersion;
+            return os.Platform switch
+            {
+                PlatformID.Win32NT => "Config.xml",
+                
+                PlatformID.Unix or PlatformID.MacOSX or PlatformID.Other => $"{homeDirectory}/.sudari-cli/Config.xml",
+                _ => "Config.xml"
+            };
+        }
 
         /// <summary>
         /// 软件许可证位置

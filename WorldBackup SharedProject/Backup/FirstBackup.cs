@@ -45,23 +45,23 @@ namespace com.Lavaver.WorldBackup
 
         public static void CheckAndCreateBackupDatabase()
         {
-            if (!File.Exists(GlobalString.DatabaseLocation))
+            if (!File.Exists(GlobalString.DatabaseLocation()))
             {
                 // 创建一个新的 XML 文档结构
                 var newDoc = new XDocument(new XElement("Backups"));
-                newDoc.Save(GlobalString.DatabaseLocation);
+                newDoc.Save(GlobalString.DatabaseLocation());
             }
         }
 
         public static (string source, string backupto) ReadConfig()
         {
-            if (!File.Exists(GlobalString.SoftwareConfigLocation))
+            if (!File.Exists(GlobalString.SoftwareConfigLocation()))
             {
                 LogConsole.Log("WorldBackup Backup", "配置不存在", ConsoleColor.Red);
                 Environment.Exit(1);
             }
 
-            var configXml = XDocument.Load(GlobalString.SoftwareConfigLocation);
+            var configXml = XDocument.Load(GlobalString.SoftwareConfigLocation());
             var source = configXml.Root.Element("source")?.Value;
             var backupto = configXml.Root.Element("backupto")?.Value;
 
@@ -188,7 +188,7 @@ namespace com.Lavaver.WorldBackup
         {
             var backupTime = NTPC.Run();
 
-            var doc = XDocument.Load(GlobalString.DatabaseLocation);
+            var doc = XDocument.Load(GlobalString.DatabaseLocation());
             var root = doc.Element("Backups");
 
             var newBackupElement = new XElement("Backup",
@@ -198,7 +198,7 @@ namespace com.Lavaver.WorldBackup
             );
 
             root.Add(newBackupElement);
-            doc.Save(GlobalString.DatabaseLocation);
+            doc.Save(GlobalString.DatabaseLocation());
         }
     }
 }

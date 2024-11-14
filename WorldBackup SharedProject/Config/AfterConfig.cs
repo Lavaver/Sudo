@@ -67,7 +67,7 @@ namespace com.Lavaver.WorldBackup
         {
             try
             {
-                var doc = XDocument.Load(GlobalString.SoftwareConfigLocation);
+                var doc = XDocument.Load(GlobalString.SoftwareConfigLocation());
                 var element = doc.Root.Element(elementName);
 
                 if (element != null)
@@ -79,7 +79,7 @@ namespace com.Lavaver.WorldBackup
                     if (!string.IsNullOrEmpty(newPath))
                     {
                         element.Value = newPath;
-                        doc.Save(GlobalString.SoftwareConfigLocation);
+                        doc.Save(GlobalString.SoftwareConfigLocation());
                         Console.WriteLine("配置已更新。");
                     }
                     else
@@ -103,12 +103,12 @@ namespace com.Lavaver.WorldBackup
             try
             {
                 // 加载 XML 文档
-                var xmlDoc = XDocument.Load(GlobalString.SoftwareConfigLocation);
+                var xmlDoc = XDocument.Load(GlobalString.SoftwareConfigLocation());
                 var element = xmlDoc.Root.Element("MySQL");
                 
                 // 删除 MySQL 节点
                 element.Remove();
-                xmlDoc.Save(GlobalString.SoftwareConfigLocation);
+                xmlDoc.Save(GlobalString.SoftwareConfigLocation());
 
                 LogConsole.Log("配置", "已完成", ConsoleColor.Green);
             }
@@ -124,7 +124,7 @@ namespace com.Lavaver.WorldBackup
             {
                 // 加载 XML 文档
                 var xmlDoc = new XmlDocument();
-                xmlDoc.Load(GlobalString.SoftwareConfigLocation);
+                xmlDoc.Load(GlobalString.SoftwareConfigLocation());
 
                 // 创建 MySQL 节点
                 var mySqlNode = xmlDoc.CreateElement("MySQL");
@@ -133,7 +133,7 @@ namespace com.Lavaver.WorldBackup
                 xmlDoc.DocumentElement.AppendChild(mySqlNode);
 
                 // 保存修改后的 XML 文档
-                xmlDoc.Save(GlobalString.SoftwareConfigLocation);
+                xmlDoc.Save(GlobalString.SoftwareConfigLocation());
 
                 LogConsole.Log("配置", "已完成", ConsoleColor.Green);
             }

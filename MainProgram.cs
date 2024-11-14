@@ -8,9 +8,12 @@ namespace com.Lavaver.WorldBackup
 {
     internal class MainProgram
     {
+        
        static  string programName = AppDomain.CurrentDomain.FriendlyName;
         static async Task Main(string[] args)
         {
+            var homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            var os = Environment.OSVersion;
             var entryAssembly = Assembly.GetEntryAssembly();
             var version = entryAssembly?.GetName().Version ?? new Version(0, 0);
 
@@ -19,6 +22,21 @@ namespace com.Lavaver.WorldBackup
             LogConsole.Initialize();
 
             LogConsole.Log("Init", "正在初始化，请稍候", ConsoleColor.Green); // 这代码从初版开始从未动过，见证了从初版开始主程序代码从寥寥 31 行到如今的 107 行，以及各种功能的加入和离去。它见证着历史，却又不止于历史。当每一次新版本成功编译后出现这条日志的那一刻，新版也就延续了初版的胜利。因为初版本身在我这位作者以及 15 岁学生意义上就是个胜利。
+
+            if (os.Platform is PlatformID.Unix or PlatformID.MacOSX or PlatformID.Other)
+            {
+                if (!Directory.Exists($"{homeDirectory}/.sudari-cli"))
+                {
+                    Directory.CreateDirectory($"{homeDirectory}/.sudari-cli");
+                }
+                
+                // 如果这个程序用的是 sudo
+                if (Environment.UserName == "root")
+                {
+                    LogConsole.Log("Init", "你正在使用 sudo 运行程序，请不要使用 sudo 运行程序，请使用普通用户身份运行程序", ConsoleColor.Red);
+                    return;
+                }
+            }
 
             if (args.Length > 0)
             {

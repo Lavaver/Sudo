@@ -31,14 +31,14 @@ namespace com.Lavaver.WorldBackup
             }
             else
             {
-                if (!File.Exists(GlobalString.DatabaseLocation))
+                if (!File.Exists(GlobalString.DatabaseLocation()))
                 {
                     LogConsole.Log("备份数据库", "未找到备份数据库文件。请先正常运行程序以自动备份并生成数据库信息后再试。", ConsoleColor.Red);
                     return;
                 }
             }
 
-            if (!File.Exists(GlobalString.SoftwareConfigLocation))
+            if (!File.Exists(GlobalString.SoftwareConfigLocation()))
             {
                 LogConsole.Log("配置文件", "未找到配置文件。请检查配置文件路径。", ConsoleColor.Red);
                 return;
@@ -47,8 +47,8 @@ namespace com.Lavaver.WorldBackup
             try
             {
                 // 加载 XML 文件
-                XDocument doc = XDocument.Load(GlobalString.DatabaseLocation);
-                XDocument configDoc = XDocument.Load(GlobalString.DatabaseLocation);
+                XDocument doc = XDocument.Load(GlobalString.DatabaseLocation());
+                XDocument configDoc = XDocument.Load(GlobalString.DatabaseLocation());
 
                 if (doc.Root == null || doc.Root.Elements("Backup").Count() == 0)
                 {
@@ -134,7 +134,7 @@ namespace com.Lavaver.WorldBackup
                             backups[selectedIndex].Element.Remove();
                         }
                         selectedIndexes.Clear();
-                        doc.Save(GlobalString.DatabaseLocation);
+                        doc.Save(GlobalString.DatabaseLocation());
                     }
                     else if (key == ConsoleKey.F1) // 压缩选中备份
                     {
@@ -145,7 +145,7 @@ namespace com.Lavaver.WorldBackup
                         }
                         selectedIndexes.Clear();
                         
-                        doc.Save(GlobalString.DatabaseLocation);
+                        doc.Save(GlobalString.DatabaseLocation());
                     }
                 }
             }
@@ -244,7 +244,7 @@ namespace com.Lavaver.WorldBackup
                         backups[selectedIndex].Element.Remove();
                     }
                     selectedIndexes.Clear();
-                    doc.Save(GlobalString.DatabaseLocation);
+                    doc.Save(GlobalString.DatabaseLocation());
                 }
                 else if (key == ConsoleKey.F1) // 压缩选中备份
                 {
@@ -255,7 +255,7 @@ namespace com.Lavaver.WorldBackup
                     }
                     selectedIndexes.Clear();
 
-                    doc.Save(GlobalString.DatabaseLocation);
+                    doc.Save(GlobalString.DatabaseLocation());
                 }
             }
         }

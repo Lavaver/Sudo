@@ -6,7 +6,7 @@ public class ReadBackupLocation
 {
     public static string Get()
     {
-        XDocument doc = XDocument.Load(GlobalString.SoftwareConfigLocation);
+        XDocument doc = XDocument.Load(GlobalString.SoftwareConfigLocation());
         XElement element = doc.Root.Element("backupto");
 
         if (!string.IsNullOrEmpty(element.Value))

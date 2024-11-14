@@ -17,9 +17,9 @@ namespace com.Lavaver.WorldBackup.Database
             }
             else
             {
-                if (File.Exists(GlobalString.DatabaseLocation))
+                if (File.Exists(GlobalString.DatabaseLocation()))
                 {
-                    File.Delete(GlobalString.DatabaseLocation);
+                    File.Delete(GlobalString.DatabaseLocation());
                     LogConsole.Log("备份数据库", "已删除数据库文件", ConsoleColor.Red);
                 }
                 else
@@ -51,7 +51,7 @@ namespace com.Lavaver.WorldBackup.Database
 
         public static void DelData()
         {
-            if (!File.Exists(GlobalString.DatabaseLocation))
+            if (!File.Exists(GlobalString.DatabaseLocation()))
             {
                 LogConsole.Log("备份数据库", "未找到备份数据库文件。请先正常运行程序以自动备份并生成数据库信息后再试。", ConsoleColor.Red);
                 return;
@@ -60,7 +60,7 @@ namespace com.Lavaver.WorldBackup.Database
             try
             {
                 // 加载 XML 文件
-                XDocument doc = XDocument.Load(GlobalString.DatabaseLocation);
+                XDocument doc = XDocument.Load(GlobalString.DatabaseLocation());
 
                 if (doc.Root == null || doc.Root.Elements("Backup").Count() == 0)
                 {
@@ -123,7 +123,7 @@ namespace com.Lavaver.WorldBackup.Database
                                 DeleteDirectoryRecursively($"{backups[selectedIndex].Path}");
                                 LogConsole.Log("备份数据库", $"{backups[selectedIndex].Path} => Deleted（删除）", ConsoleColor.Red);
                                 backups[selectedIndex].Element.Remove();
-                                doc.Save(GlobalString.DatabaseLocation);
+                                doc.Save(GlobalString.DatabaseLocation());
                                 LogConsole.Log("备份数据库", "删除成功", ConsoleColor.Green);
 
                                  break;
@@ -149,14 +149,14 @@ namespace com.Lavaver.WorldBackup.Database
 
         public static void DelConfig()
         {
-            if (File.Exists(GlobalString.SoftwareConfigLocation))
+            if (File.Exists(GlobalString.SoftwareConfigLocation()))
             {
                 LogConsole.Log("软件配置", "警告：删除软件配置文件将会导致后续运行时需要重新配置，仅在迫不得已时使用。我们推荐你使用 -rebuild-config 参数重新构建一个新的配置文件以便你重新开始。继续？[Y/N]", ConsoleColor.Yellow);
                 var input = Console.ReadLine();
                 switch (input)
                 {
                     case "y" or "Y":
-                        File.Delete(GlobalString.SoftwareConfigLocation);
+                        File.Delete(GlobalString.SoftwareConfigLocation());
                         LogConsole.Log("软件配置", "已删除软件配置文件", ConsoleColor.Red);
                         break;
                     case "n" or "N":

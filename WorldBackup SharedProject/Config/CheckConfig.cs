@@ -16,9 +16,9 @@ namespace com.Lavaver.WorldBackup
         {
             try
             {
-                if (File.Exists(GlobalString.SoftwareConfigLocation)) // 检查配置文件是否存在
+                if (File.Exists(GlobalString.SoftwareConfigLocation())) // 检查配置文件是否存在
                 {
-                    UserConfig.ReadConfigFile(GlobalString.SoftwareConfigLocation);
+                    UserConfig.ReadConfigFile(GlobalString.SoftwareConfigLocation());
                     if (SQLConfig.IsEnabled())
                     {
                         Auth.Test();
@@ -27,7 +27,7 @@ namespace com.Lavaver.WorldBackup
                 }
                 else
                 {
-                    CreateConfigFile(GlobalString.SoftwareConfigLocation);
+                    CreateConfigFile(GlobalString.SoftwareConfigLocation());
                 }
             }
             catch (Exception ex)

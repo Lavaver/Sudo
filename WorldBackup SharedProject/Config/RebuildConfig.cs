@@ -10,7 +10,7 @@ namespace com.Lavaver.WorldBackup.Rebuild
     {
         public static void Run()
         {
-            if (!File.Exists(GlobalString.SoftwareConfigLocation))
+            if (!File.Exists(GlobalString.SoftwareConfigLocation()))
             {
                 LogConsole.Log("RebuildConfig", "正在直接构建新的配置文件", ConsoleColor.Blue);
                 CheckConfig.Run();
@@ -25,7 +25,7 @@ namespace com.Lavaver.WorldBackup.Rebuild
                     LogConsole.Log("RebuildConfig", "正在重构配置文件", ConsoleColor.Blue);
                     try
                     {
-                        File.Delete(GlobalString.SoftwareConfigLocation);
+                        File.Delete(GlobalString.SoftwareConfigLocation());
                     }
                     catch (Exception ex)
                     {

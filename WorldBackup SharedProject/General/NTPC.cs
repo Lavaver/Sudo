@@ -12,7 +12,7 @@ namespace com.Lavaver.WorldBackup
 
         public static DateTime Run()
         {
-                var configXml = XDocument.Load(GlobalString.SoftwareConfigLocation);
+                var configXml = XDocument.Load(GlobalString.SoftwareConfigLocation());
                 var serveraddress = configXml.Root.Element("NTP-Server")?.Value;
 
                 if (!string.IsNullOrEmpty(serveraddress))

@@ -7,7 +7,7 @@ namespace com.Lavaver.WorldBackup.Database.MySQL
     {
         public static bool IsEnabled()
         {
-            var configXml = XDocument.Load(GlobalString.SoftwareConfigLocation);
+            var configXml = XDocument.Load(GlobalString.SoftwareConfigLocation());
             var mysqlNode = configXml.Root.Element("MySQL");
 
             if (mysqlNode != null && mysqlNode.Value == "true")
